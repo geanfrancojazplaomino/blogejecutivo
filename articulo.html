@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Por qué el 80% de las iniciativas de IA mueren antes de producción · Alejandro Vega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; }
+  body { background: #fff; font-family: 'Hanken Grotesk', sans-serif; }
+
+  /* Header */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 52px;
+    background: #fff;
+    border-bottom: 1px solid rgba(28,43,74,0.12);
+  }
+  .brand { display: flex; flex-direction: column; gap: 2px; }
+  .brand-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #1C2B4A;
+    text-decoration: none;
+  }
+  .brand-tagline {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9A9488;
+  }
+  .main-nav { display: flex; align-items: center; gap: 28px; }
+  .main-nav a { font-size: 15px; font-weight: 500; color: #1B1F27; text-decoration: none; }
+  .btn-subscribe {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff !important;
+    background: #1C2B4A;
+    padding: 10px 20px;
+    border-radius: 999px;
+  }
+
+  /* Article header */
+  .article-header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 40px;
+    text-align: center;
+  }
+  .article-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #A05A2B;
+  }
+  .article-header h1 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #181C24;
+    margin: 18px 0 20px;
+  }
+  .article-header .deck {
+    font-size: 20px;
+    line-height: 1.55;
+    color: #56524B;
+    margin-bottom: 32px;
+  }
+  .byline {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .byline-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: linear-gradient(140deg, #2A3D60, #1C2B4A);
+    flex-shrink: 0;
+  }
+  .byline-text { text-align: left; }
+  .byline-name { font-size: 14px; font-weight: 600; color: #1B1F27; }
+  .byline-meta { font-size: 13px; color: #8A857B; }
+
+  /* Hero image */
+  .article-hero-img {
+    max-width: 1080px;
+    margin: 0 auto 12px;
+    padding: 0 24px;
+  }
+  .article-hero-img .img-placeholder {
+    aspect-ratio: 21/9;
+    border-radius: 6px;
+    background: linear-gradient(140deg, #2A3D60, #1C2B4A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Article body */
+  .article-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 44px 24px 60px;
+  }
+  .article-body p {
+    font-family: Newsreader, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: #2A2E36;
+    margin-bottom: 24px;
+  }
+  .article-body h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: #181C24;
+    margin: 8px 0 18px;
+  }
+  .article-body ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-left: 0;
+  }
+  .article-body ol li {
+    display: flex;
+    gap: 16px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 16.5px;
+    line-height: 1.5;
+    color: #2A2E36;
+  }
+  .article-body ol li .num {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    color: #1C2B4A;
+    font-size: 19px;
+    flex-shrink: 0;
+  }
+  .article-body ol li strong { color: #181C24; }
+  .article-body blockquote {
+    font-family: Newsreader, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.4;
+    color: #1C2B4A;
+    border-left: 3px solid #1C2B4A;
+    padding-left: 28px;
+    margin: 36px 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* Author box */
+  .author-box {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+  }
+  .author-box-inner {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    background: #F6F3EC;
+    border-radius: 8px;
+    padding: 30px 32px;
+  }
+  .author-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: linear-gradient(140deg, #2A3D60, #1C2B4A);
+  }
+  .author-info-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #181C24;
+    margin-bottom: 4px;
+  }
+  .author-info-role { font-size: 13px; color: #8A857B; margin-bottom: 10px; }
+  .author-info-bio { font-size: 15px; line-height: 1.6; color: #56524B; margin-bottom: 12px; }
+  .author-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1C2B4A;
+    text-decoration: none;
+    border-bottom: 2px solid #1C2B4A;
+    padding-bottom: 2px;
+  }
+
+  /* Newsletter CTA */
+  .newsletter-cta {
+    background: #1C2B4A;
+    color: #fff;
+    padding: 52px;
+    text-align: center;
+  }
+  .newsletter-cta .label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #9DB0D6;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .newsletter-cta h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    max-width: 560px;
+    margin: 0 auto 22px;
+  }
+  .email-row { display: flex; gap: 10px; max-width: 430px; margin: 0 auto; }
+  .email-row input {
+    flex: 1;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 15px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    color: #1B1F27;
+  }
+  .email-row button {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1C2B4A;
+    background: #F6F3EC;
+    border: none;
+    border-radius: 6px;
+    padding: 0 24px;
+    cursor: pointer;
+  }
+  .email-row button:hover { background: #fff; }
+
+  /* Related */
+  .related-section {
+    background: #fff;
+    padding: 56px 52px 64px;
+  }
+  .related-section h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #181C24;
+    margin-bottom: 28px;
+    border-bottom: 1px solid rgba(28,43,74,0.14);
+    padding-bottom: 16px;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+  }
+  .related-card { text-decoration: none; }
+  .related-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cat-ia { color: #A05A2B; }
+  .cat-estrategia { color: #1C2B4A; }
+  .cat-latam { color: #1C7A5E; }
+  .related-card h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.22;
+    color: #1A1E27;
+    margin: 8px 0;
+  }
+  .related-card span.date { font-size: 13px; color: #8A857B; }
+
+  /* Footer */
+  .site-footer {
+    background: #15203A;
+    color: #6E7896;
+    padding: 32px 52px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-name">Alejandro Vega</a>
+    <span class="brand-tagline">Data · Analytics · IA</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Inicio</a>
+    <a href="#">Artículos</a>
+    <a href="#">Sobre mí</a>
+    <a href="newsletter.html" class="btn-subscribe">Suscríbete</a>
+  </nav>
+</header>
+
+<div class="article-header">
+  <span class="article-cat">IA Aplicada</span>
+  <h1>Por qué el 80% de las iniciativas de IA mueren antes de producción</h1>
+  <p class="deck">La diferencia entre un piloto exitoso y un sistema en producción rara vez es técnica. Es organizativa.</p>
+  <div class="byline">
+    <div class="byline-avatar"></div>
+    <div class="byline-text">
+      <div class="byline-name">Alejandro Vega</div>
+      <div class="byline-meta">Chief Data &amp; AI Officer · 25 jun 2026 · 9 min</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-hero-img">
+  <div class="img-placeholder">Imagen</div>
+</div>
+
+<div class="article-body">
+  <p>La estadística circula en cada conferencia: la gran mayoría de los proyectos de IA nunca llegan a producción. Lo que pocos discuten es <em>por qué</em>. Tras una década acompañando a equipos en Latam y Europa, he visto el mismo patrón repetirse: el modelo funcionaba. Lo que faltaba era todo lo demás.</p>
+  <p>El problema rara vez es el algoritmo. Es la ausencia de un dueño de negocio claro, datos que no resisten la operación diaria, y una organización que no estaba lista para cambiar su forma de decidir. El piloto demuestra viabilidad técnica; la producción exige viabilidad organizativa.</p>
+
+  <h2>Cinco patrones de quienes sí escalan</h2>
+  <p>No son técnicos. Son decisiones de liderazgo que se toman antes de escribir la primera línea de código:</p>
+
+  <ol>
+    <li><span class="num">1.</span><span><strong>Un dueño de negocio, no de TI.</strong> El caso de uso lo lidera quien rinde cuentas por el resultado, no por el modelo.</span></li>
+    <li><span class="num">2.</span><span><strong>La métrica de éxito se define el día uno.</strong> Si no sabes qué decisión cambia, no tienes proyecto: tienes un experimento.</span></li>
+    <li><span class="num">3.</span><span><strong>Datos de producción, no de laboratorio.</strong> Se valida con la calidad real del dato operativo, con sus huecos y su latencia.</span></li>
+    <li><span class="num">4.</span><span><strong>Gobernanza desde el prototipo.</strong> Trazabilidad, sesgo y cumplimiento no son una capa final; son requisitos de diseño.</span></li>
+    <li><span class="num">5.</span><span><strong>Se presupuesta la adopción.</strong> El 70% del esfuerzo ocurre después del modelo: integración, cambio y soporte.</span></li>
+  </ol>
+
+  <blockquote>"Un modelo que nadie usa no es un proyecto fallido de ciencia de datos. Es un proyecto fallido de gestión del cambio."</blockquote>
+
+  <p>La buena noticia es que ninguno de estos cinco frentes requiere talento escaso ni presupuesto extraordinario. Requieren que el liderazgo trate la IA como una capacidad de negocio, no como una iniciativa de tecnología. Es la diferencia entre comprar herramientas y construir ventaja.</p>
+  <p>Las empresas que entendieron esto en Europa llevan ventaja en gobernanza; las de Latam, en velocidad de adopción. La oportunidad — para ambas — está en tomar prestado lo que a la otra le sobra.</p>
+</div>
+
+<div class="author-box">
+  <div class="author-box-inner">
+    <div class="author-avatar"></div>
+    <div>
+      <div class="author-info-name">Alejandro Vega</div>
+      <div class="author-info-role">Chief Data &amp; AI Officer</div>
+      <p class="author-info-bio">Ayudo a líderes a convertir datos en decisiones. Escribo sobre Data, Analytics e IA con foco en Latam y Europa.</p>
+      <a href="#" class="author-link">Sígueme en LinkedIn →</a>
+    </div>
+  </div>
+</div>
+
+<section class="newsletter-cta">
+  <p class="label">La Señal</p>
+  <h2>Recibe el próximo análisis directo en tu correo.</h2>
+  <div class="email-row">
+    <input type="email" placeholder="tu@empresa.com">
+    <button>Suscríbete</button>
+  </div>
+</section>
+
+<section class="related-section">
+  <h2>Relacionados</h2>
+  <div class="related-grid">
+    <a href="#" class="related-card">
+      <span class="related-cat cat-ia">IA Aplicada</span>
+      <h3>El verdadero costo de un proyecto de GenAI en producción</h3>
+      <span class="date">28 may 2026 · 9 min</span>
+    </a>
+    <a href="#" class="related-card">
+      <span class="related-cat cat-estrategia">Estrategia de Datos</span>
+      <h3>Del dato al P&amp;L: cómo presentar analítica ante un board</h3>
+      <span class="date">21 may 2026 · 7 min</span>
+    </a>
+    <a href="#" class="related-card">
+      <span class="related-cat cat-latam">Latam ↔ Europa</span>
+      <h3>Latam y Europa frente a la IA: dos velocidades, una oportunidad</h3>
+      <span class="date">11 jun 2026 · 8 min</span>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Alejandro Vega. Todos los derechos reservados.</span>
+  <span>Privacidad · Términos</span>
+</footer>
+
+</body>
+</html>

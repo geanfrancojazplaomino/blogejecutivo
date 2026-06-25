@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Señal · Newsletter · Alejandro Vega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; }
+  body { background: #fff; font-family: 'Hanken Grotesk', sans-serif; }
+
+  /* Header */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 52px;
+    background: #F6F3EC;
+    border-bottom: 1px solid rgba(28,43,74,0.12);
+  }
+  .brand-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #1C2B4A;
+    text-decoration: none;
+  }
+  .back-link { font-size: 14px; font-weight: 500; color: #1B1F27; text-decoration: none; }
+  .back-link:hover { color: #1C2B4A; }
+
+  /* Hero */
+  .hero {
+    background: #F6F3EC;
+    padding: 84px 52px 70px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #1C2B4A;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 62px;
+    letter-spacing: -0.025em;
+    color: #181C24;
+    margin-bottom: 22px;
+    line-height: 1;
+  }
+  .hero .desc {
+    font-size: 20px;
+    line-height: 1.55;
+    color: #56524B;
+    max-width: 620px;
+    margin: 0 auto 36px;
+  }
+  .email-row {
+    display: flex;
+    gap: 10px;
+    max-width: 460px;
+    margin: 0 auto 14px;
+  }
+  .email-row input {
+    flex: 1;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 16px;
+    padding: 16px 20px;
+    border: 1px solid rgba(28,43,74,0.25);
+    border-radius: 8px;
+    background: #fff;
+    color: #1B1F27;
+  }
+  .email-row button {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background: #1C2B4A;
+    border: none;
+    border-radius: 8px;
+    padding: 0 28px;
+    cursor: pointer;
+  }
+  .email-row button:hover { background: #2A3D60; }
+  .hero .fine { font-size: 13px; color: #8A857B; }
+
+  /* What's inside */
+  .inside-section {
+    background: #fff;
+    padding: 64px 52px;
+  }
+  .inside-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .inside-item { text-align: center; }
+  .inside-num {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #1C2B4A;
+    margin-bottom: 12px;
+  }
+  .inside-item h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: #181C24;
+    margin-bottom: 8px;
+  }
+  .inside-item p { font-size: 15px; line-height: 1.6; color: #6E6A62; }
+
+  /* Bonus resources */
+  .resources-section {
+    background: #F6F3EC;
+    padding: 64px 52px;
+  }
+  .resources-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #1C2B4A;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .resources-section h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #181C24;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .resource-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 34px;
+    border: 1px solid rgba(28,43,74,0.1);
+  }
+  .resource-badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .badge-orange { color: #A05A2B; }
+  .badge-navy { color: #1C2B4A; }
+  .resource-card h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.18;
+    color: #181C24;
+    margin: 12px 0;
+  }
+  .resource-card p { font-size: 15px; line-height: 1.6; color: #56524B; margin-bottom: 18px; }
+  .resource-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1C2B4A;
+    text-decoration: none;
+    border-bottom: 2px solid #1C2B4A;
+    padding-bottom: 2px;
+  }
+
+  /* Testimonial */
+  .testimonial-section {
+    background: #1C2B4A;
+    color: #fff;
+    padding: 60px 52px;
+    text-align: center;
+  }
+  .testimonial-section blockquote {
+    font-family: Newsreader, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.45;
+    max-width: 720px;
+    margin: 0 auto 18px;
+  }
+  .testimonial-section cite {
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9DB0D6;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .site-footer {
+    background: #15203A;
+    color: #6E7896;
+    padding: 32px 52px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand-name">Alejandro Vega</a>
+  <a href="index.html" class="back-link">← Volver al blog</a>
+</header>
+
+<section class="hero">
+  <p class="hero-label">Newsletter trimestral</p>
+  <h1>La Señal</h1>
+  <p class="desc">Cada trimestre, las cinco señales en Data &amp; AI que un líder debe llevar a su próximo board — con lectura regulatoria de Latam y Europa.</p>
+  <div class="email-row">
+    <input type="email" placeholder="tu@empresa.com">
+    <button>Suscríbete</button>
+  </div>
+  <p class="fine">Sin spam. Una edición por trimestre. Cancela cuando quieras.</p>
+</section>
+
+<section class="inside-section">
+  <div class="inside-grid">
+    <div class="inside-item">
+      <div class="inside-num">01</div>
+      <h3>Cinco señales</h3>
+      <p>Las tendencias que sí importan, filtradas del ruido y traducidas a decisiones de board.</p>
+    </div>
+    <div class="inside-item">
+      <div class="inside-num">02</div>
+      <h3>Lectura regulatoria</h3>
+      <p>Qué cambia en el EU AI Act y en las leyes de datos de Latam, y cómo te afecta.</p>
+    </div>
+    <div class="inside-item">
+      <div class="inside-num">03</div>
+      <h3>Un caso real</h3>
+      <p>Una decisión de Data o IA diseccionada: qué se hizo, qué costó, qué resultó.</p>
+    </div>
+  </div>
+</section>
+
+<section class="resources-section">
+  <p class="resources-label">Al suscribirte recibes</p>
+  <h2>Dos recursos, gratis</h2>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <span class="resource-badge badge-orange">Recurso gratuito</span>
+      <h3>Data &amp; AI Maturity Scorecard</h3>
+      <p>Autoevaluación de una página que ubica a tu organización en cinco niveles de madurez, con benchmark Latam / Europa.</p>
+      <a href="#" class="resource-link">Descargar →</a>
+    </div>
+    <div class="resource-card">
+      <span class="resource-badge badge-navy">Recurso gratuito</span>
+      <h3>Briefing del trimestre para el board</h3>
+      <p>Informe ejecutivo de 8–10 páginas con las cinco tendencias que un C-level debe llevar a su próxima reunión de directorio.</p>
+      <a href="#" class="resource-link">Descargar →</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <blockquote>"La única newsletter de Data &amp; AI que leo de principio a fin. Directa, sin humo, pensada para quien decide."</blockquote>
+  <cite>VP de Datos · Banca · Madrid</cite>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Alejandro Vega. Todos los derechos reservados.</span>
+  <span>Privacidad · Términos</span>
+</footer>
+
+</body>
+</html>

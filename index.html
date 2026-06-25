@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alejandro Vega · Data, Analytics & IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; }
+  body { background: #F6F3EC; font-family: 'Hanken Grotesk', sans-serif; }
+
+  /* Header */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 52px;
+    background: #F6F3EC;
+    border-bottom: 1px solid rgba(28,43,74,0.12);
+  }
+  .brand { display: flex; flex-direction: column; gap: 2px; }
+  .brand-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #1C2B4A;
+    text-decoration: none;
+  }
+  .brand-tagline {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9A9488;
+  }
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .main-nav a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1B1F27;
+    text-decoration: none;
+  }
+  .main-nav .lang {
+    font-size: 12px;
+    color: #9A9488;
+    letter-spacing: 0.06em;
+  }
+  .btn-subscribe {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #1C2B4A;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+
+  /* Pillars bar */
+  .pillars-bar {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 52px;
+    background: #F6F3EC;
+    border-bottom: 1px solid rgba(28,43,74,0.12);
+  }
+  .pillars-bar .label {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: #1C2B4A;
+  }
+  .pillars-bar .divider { width: 1px; height: 18px; background: rgba(28,43,74,0.2); }
+  .pillars-bar a {
+    font-size: 14px;
+    color: #43403A;
+    text-decoration: none;
+  }
+  .pillars-bar a:hover { color: #1C2B4A; }
+
+  /* Hero */
+  .hero {
+    padding: 66px 52px 60px;
+    background: #F6F3EC;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #1C2B4A;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 52px;
+    align-items: center;
+  }
+  .hero-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #A05A2B;
+  }
+  .hero h1 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: #181C24;
+    margin: 16px 0 22px;
+  }
+  .hero-desc {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #56524B;
+    margin-bottom: 28px;
+    max-width: 520px;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: #8A857B;
+    margin-bottom: 26px;
+  }
+  .hero-meta .author { color: #1C2B4A; font-weight: 600; }
+  .hero-read {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1C2B4A;
+    text-decoration: none;
+    border-bottom: 2px solid #1C2B4A;
+    padding-bottom: 3px;
+  }
+  .hero-image {
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    background: linear-gradient(140deg, #2A3D60, #1C2B4A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Articles grid */
+  .articles-section {
+    padding: 60px 52px 70px;
+    background: #fff;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    border-bottom: 1px solid rgba(28,43,74,0.14);
+    padding-bottom: 18px;
+  }
+  .section-header h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #181C24;
+  }
+  .section-header a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1C2B4A;
+    text-decoration: none;
+  }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 38px 36px;
+  }
+  .article-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-img {
+    aspect-ratio: 16/10;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .card-img.light { background: linear-gradient(135deg, #D9D2C4, #C3BBA9); color: rgba(28,43,74,0.42); }
+  .card-img.dark { background: linear-gradient(135deg, #2A3D60, #1C2B4A); color: rgba(255,255,255,0.4); }
+  .card-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 16px 0 8px;
+  }
+  .cat-estrategia { color: #1C2B4A; }
+  .cat-ia { color: #A05A2B; }
+  .cat-latam { color: #1C7A5E; }
+  .cat-liderazgo { color: #7A3FA0; }
+  .article-card h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.22;
+    color: #1A1E27;
+    margin-bottom: 10px;
+  }
+  .card-date {
+    font-size: 13px;
+    color: #8A857B;
+  }
+
+  /* Quote */
+  .quote-section {
+    padding: 78px 52px;
+    background: #F6F3EC;
+    text-align: center;
+  }
+  .quote-section blockquote {
+    font-family: Newsreader, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 1.4;
+    color: #1C2B4A;
+    max-width: 880px;
+    margin: 0 auto 24px;
+    letter-spacing: -0.01em;
+  }
+  .quote-section cite {
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8A857B;
+    font-weight: 600;
+  }
+
+  /* Newsletter */
+  .newsletter-section {
+    background: #1C2B4A;
+    color: #fff;
+    padding: 60px 52px;
+  }
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .newsletter-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #9DB0D6;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .newsletter-section h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.12;
+    margin-bottom: 14px;
+  }
+  .newsletter-section p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.72); }
+  .email-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .email-row input {
+    flex: 1;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 15px;
+    padding: 15px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #fff;
+    color: #1B1F27;
+  }
+  .email-row button {
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1C2B4A;
+    background: #F6F3EC;
+    border: none;
+    border-radius: 6px;
+    padding: 0 26px;
+    cursor: pointer;
+  }
+  .email-row button:hover { background: #fff; }
+  .newsletter-fine { font-size: 13px; color: rgba(255,255,255,0.55); }
+
+  /* Footer */
+  .site-footer {
+    background: #15203A;
+    color: #CBD2E0;
+    padding: 56px 52px 34px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 48px;
+    padding-bottom: 38px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer-brand { max-width: 320px; }
+  .footer-brand-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .footer-brand p { font-size: 14px; line-height: 1.6; color: #9AA4B8; margin-bottom: 20px; }
+  .footer-social { display: flex; gap: 18px; font-size: 13px; font-weight: 600; color: #fff; }
+  .footer-social a { text-decoration: none; }
+  .footer-social a:hover { opacity: 0.8; }
+  .footer-links { display: flex; gap: 64px; }
+  .footer-col { display: flex; flex-direction: column; gap: 12px; }
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7C8AA8;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .footer-col a { font-size: 14px; text-decoration: none; color: #CBD2E0; }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 22px;
+    font-size: 12.5px;
+    color: #6E7896;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-name">Alejandro Vega</a>
+    <span class="brand-tagline">Data · Analytics · IA</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Inicio</a>
+    <a href="#">Artículos</a>
+    <a href="#">Sobre mí</a>
+    <span class="lang">ES / <span style="color:#C9C4B8">EN</span></span>
+    <a href="newsletter.html" class="btn-subscribe">Suscríbete</a>
+  </nav>
+</header>
+
+<div class="pillars-bar">
+  <span class="label">Pilares</span>
+  <span class="divider"></span>
+  <a href="#">Estrategia de Datos</a>
+  <a href="#">IA Aplicada</a>
+  <a href="#">Liderazgo de Datos</a>
+  <a href="#">Latam ↔ Europa</a>
+</div>
+
+<section class="hero">
+  <p class="hero-label">Artículo destacado</p>
+  <div class="hero-grid">
+    <div>
+      <span class="hero-cat">IA Aplicada</span>
+      <h1>Por qué el 80% de las iniciativas de IA mueren antes de producción</h1>
+      <p class="hero-desc">La diferencia entre un piloto exitoso y un sistema en producción rara vez es técnica. Es organizativa. Cinco patrones que distinguen a las empresas que sí escalan.</p>
+      <div class="hero-meta">
+        <span class="author">Alejandro Vega</span>
+        <span>·</span><span>25 jun 2026</span><span>·</span><span>9 min de lectura</span>
+      </div>
+      <a href="articulo.html" class="hero-read">Leer el artículo →</a>
+    </div>
+    <div class="hero-image">Imagen</div>
+  </div>
+</section>
+
+<section class="articles-section">
+  <div class="section-header">
+    <h2>Últimos artículos</h2>
+    <a href="#">Ver todos →</a>
+  </div>
+  <div class="articles-grid">
+
+    <a href="#" class="article-card">
+      <div class="card-img light">Imagen</div>
+      <span class="card-cat cat-estrategia">Estrategia de Datos</span>
+      <h3>Data governance no es burocracia: es tu próxima ventaja competitiva</h3>
+      <span class="card-date">18 jun 2026 · 7 min</span>
+    </a>
+
+    <a href="#" class="article-card">
+      <div class="card-img dark">Imagen</div>
+      <span class="card-cat cat-latam">Latam ↔ Europa</span>
+      <h3>Latam y Europa frente a la IA: dos velocidades, una oportunidad</h3>
+      <span class="card-date">11 jun 2026 · 8 min</span>
+    </a>
+
+    <a href="#" class="article-card">
+      <div class="card-img light">Imagen</div>
+      <span class="card-cat cat-liderazgo">Liderazgo de Datos</span>
+      <h3>Cómo se estructura un equipo de datos que sí entrega</h3>
+      <span class="card-date">04 jun 2026 · 6 min</span>
+    </a>
+
+    <a href="#" class="article-card">
+      <div class="card-img dark">Imagen</div>
+      <span class="card-cat cat-ia">IA Aplicada</span>
+      <h3>El verdadero costo de un proyecto de GenAI en producción</h3>
+      <span class="card-date">28 may 2026 · 9 min</span>
+    </a>
+
+    <a href="#" class="article-card">
+      <div class="card-img light">Imagen</div>
+      <span class="card-cat cat-estrategia">Estrategia de Datos</span>
+      <h3>Del dato al P&amp;L: cómo presentar analítica ante un board</h3>
+      <span class="card-date">21 may 2026 · 7 min</span>
+    </a>
+
+    <a href="#" class="article-card">
+      <div class="card-img dark">Imagen</div>
+      <span class="card-cat cat-liderazgo">Liderazgo de Datos</span>
+      <h3>Data literacy en el C-suite: el cuello de botella invisible</h3>
+      <span class="card-date">14 may 2026 · 6 min</span>
+    </a>
+
+  </div>
+</section>
+
+<section class="quote-section">
+  <blockquote>"La ventaja competitiva ya no está en tener datos. Está en la velocidad con la que una organización los convierte en decisiones."</blockquote>
+  <cite>Alejandro Vega</cite>
+</section>
+
+<section class="newsletter-section">
+  <div class="newsletter-grid">
+    <div>
+      <p class="newsletter-label">La Señal · Newsletter trimestral</p>
+      <h2>Las 5 señales en Data &amp; AI que llevarás a tu próximo board.</h2>
+      <p>Cada trimestre, con lectura regulatoria de Latam y Europa. Directo, ejecutable.</p>
+    </div>
+    <div>
+      <div class="email-row">
+        <input type="email" placeholder="tu@empresa.com">
+        <button>Suscríbete</button>
+      </div>
+      <p class="newsletter-fine">Sin spam. Una edición por trimestre. Cancela cuando quieras.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Alejandro Vega</div>
+      <p>Estrategia de Datos, Analytics e Inteligencia Artificial para líderes en Latam y Europa.</p>
+      <div class="footer-social">
+        <a href="#">LinkedIn</a>
+        <a href="#">X</a>
+        <a href="#">Substack</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <span class="footer-col-title">Contenido</span>
+        <a href="#">Estrategia de Datos</a>
+        <a href="#">IA Aplicada</a>
+        <a href="#">Liderazgo de Datos</a>
+        <a href="#">Latam ↔ Europa</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Recursos</span>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="#">Maturity Scorecard</a>
+        <a href="#">Briefing del board</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Sobre</span>
+        <a href="#">Perfil</a>
+        <a href="#">Conferencias</a>
+        <a href="#">Contacto</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Alejandro Vega. Todos los derechos reservados.</span>
+    <span>Privacidad · Términos</span>
+  </div>
+</footer>
+
+</body>
+</html>
