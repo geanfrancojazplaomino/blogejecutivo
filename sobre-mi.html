@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sobre mí · Geanfranco Palomino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; }
+  body { background: #F6F3EC; font-family: 'Hanken Grotesk', sans-serif; }
+
+  /* Header */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 52px;
+    background: #F6F3EC;
+    border-bottom: 1px solid rgba(28,43,74,0.12);
+  }
+  .brand { display: flex; flex-direction: column; gap: 2px; }
+  .brand-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #1C2B4A;
+    text-decoration: none;
+  }
+  .brand-tagline {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #9A9488;
+  }
+  .main-nav { display: flex; align-items: center; gap: 28px; }
+  .main-nav a { font-size: 15px; font-weight: 500; color: #1B1F27; text-decoration: none; }
+  .main-nav a.active { color: #1C2B4A; font-weight: 700; border-bottom: 2px solid #1C2B4A; padding-bottom: 2px; }
+  .main-nav .lang { font-size: 12px; color: #9A9488; letter-spacing: 0.06em; }
+  .btn-subscribe {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #1C2B4A;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+
+  /* Hero bio */
+  .bio-hero {
+    background: #F6F3EC;
+    padding: 72px 52px 64px;
+  }
+  .bio-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 64px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+  }
+  .bio-avatar {
+    aspect-ratio: 3/4;
+    border-radius: 6px;
+    background: linear-gradient(140deg, #2A3D60, #1C2B4A);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+    color: rgba(255,255,255,0.35);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .bio-label {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #A05A2B;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .bio-hero h1 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: #181C24;
+    margin-bottom: 8px;
+  }
+  .bio-role {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1C2B4A;
+    margin-bottom: 32px;
+    letter-spacing: 0.01em;
+  }
+  .bio-text p {
+    font-family: Newsreader, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: #2A2E36;
+    margin-bottom: 20px;
+  }
+  .bio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .bio-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1C2B4A;
+    background: rgba(28,43,74,0.08);
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+
+  /* Highlights */
+  .highlights {
+    background: #fff;
+    padding: 64px 52px;
+  }
+  .highlights-inner { max-width: 1100px; margin: 0 auto; }
+  .highlights h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #181C24;
+    margin-bottom: 36px;
+    border-bottom: 1px solid rgba(28,43,74,0.14);
+    padding-bottom: 16px;
+  }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+  .highlight-item { display: flex; flex-direction: column; gap: 8px; }
+  .highlight-num {
+    font-family: Newsreader, serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #1C2B4A;
+    line-height: 1;
+  }
+  .highlight-item h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #181C24;
+  }
+  .highlight-item p { font-size: 14px; line-height: 1.6; color: #6E6A62; }
+
+  /* Memberships */
+  .memberships {
+    background: #F6F3EC;
+    padding: 64px 52px;
+  }
+  .memberships-inner { max-width: 1100px; margin: 0 auto; }
+  .memberships h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #181C24;
+    margin-bottom: 36px;
+    border-bottom: 1px solid rgba(28,43,74,0.14);
+    padding-bottom: 16px;
+  }
+  .memberships-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .membership-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(28,43,74,0.12);
+  }
+  .membership-row:last-child { border-bottom: 1px solid rgba(28,43,74,0.12); }
+  .membership-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #1C2B4A;
+    flex-shrink: 0;
+  }
+  .membership-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #1A1E27;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: #1C2B4A;
+    color: #fff;
+    padding: 60px 52px;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1.2;
+    max-width: 580px;
+    margin: 0 auto 24px;
+  }
+  .cta-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .cta-btn {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  .cta-btn-primary { background: #F6F3EC; color: #1C2B4A; }
+  .cta-btn-primary:hover { background: #fff; }
+  .cta-btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+  .cta-btn-secondary:hover { border-color: #fff; }
+
+  /* Footer */
+  .site-footer {
+    background: #15203A;
+    color: #6E7896;
+    padding: 32px 52px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-name">Geanfranco Palomino</a>
+    <span class="brand-tagline">Data · Analytics · IA</span>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Inicio</a>
+    <a href="#">Artículos</a>
+    <a href="sobre-mi.html" class="active">Sobre mí</a>
+    <span class="lang">ES / <span style="color:#C9C4B8">EN</span></span>
+    <a href="newsletter.html" class="btn-subscribe">Suscríbete</a>
+  </nav>
+</header>
+
+<section class="bio-hero">
+  <div class="bio-hero-inner">
+    <div class="bio-avatar">Foto</div>
+    <div>
+      <p class="bio-label">Ejecutivo · Speaker · Docente</p>
+      <h1>Geanfranco Palomino</h1>
+      <p class="bio-role">Ejecutivo en Data &amp; Analytics · ESADE Business School · CDO Spain &amp; Latam</p>
+      <div class="bio-text">
+        <p>Ejecutivo en Data &amp; Analytics, con más de 9 años liderando iniciativas de transformación analítica y posicionando el dato como un activo estratégico para la toma de decisiones y la generación de valor sostenible.</p>
+        <p>Lidero equipos multidisciplinarios en entornos regionales, diseñando e implementando estrategias de Data &amp; AI que impulsan la competitividad, habilitan eficiencia operativa y aceleran la adopción de una cultura data-driven en las organizaciones.</p>
+        <p>Mi enfoque se centra en conectar negocio, datos y tecnología para transformar capacidades analíticas en impacto real, asegurando la construcción, adopción y monetización de soluciones.</p>
+        <p>Actualmente curso el Executive Master in Digital Business en ESADE Business School, fortaleciendo mi visión ejecutiva para liderar ecosistemas donde datos, inteligencia artificial y toma de decisiones convergen como ventaja competitiva.</p>
+      </div>
+      <div class="bio-tags">
+        <span class="bio-tag">Data Strategy</span>
+        <span class="bio-tag">AI Aplicada</span>
+        <span class="bio-tag">Liderazgo de Datos</span>
+        <span class="bio-tag">Latam · Europa</span>
+        <span class="bio-tag">Speaker Internacional</span>
+        <span class="bio-tag">Docente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="highlights">
+  <div class="highlights-inner">
+    <h2>En números</h2>
+    <div class="highlights-grid">
+      <div class="highlight-item">
+        <span class="highlight-num">9+</span>
+        <h3>Años de experiencia</h3>
+        <p>Liderando iniciativas de transformación analítica en Latam y Europa.</p>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-num">2</span>
+        <h3>Mercados</h3>
+        <p>Latam y Europa: dos velocidades, una visión común sobre el valor del dato.</p>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-num">∞</span>
+        <h3>Impacto en decisiones</h3>
+        <p>Convirtiendo datos en decisiones ejecutivas con impacto medible en el P&amp;L.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="memberships">
+  <div class="memberships-inner">
+    <h2>Comunidad &amp; membresías</h2>
+    <div class="memberships-list">
+      <div class="membership-row">
+        <span class="membership-dot"></span>
+        <span class="membership-name">Club CDO Spain &amp; Latam</span>
+      </div>
+      <div class="membership-row">
+        <span class="membership-dot"></span>
+        <span class="membership-name">CIONET Spain</span>
+      </div>
+      <div class="membership-row">
+        <span class="membership-dot"></span>
+        <span class="membership-name">ESADE Alumni</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>¿Hablamos de datos, IA o estrategia?</h2>
+  <div class="cta-links">
+    <a href="newsletter.html" class="cta-btn cta-btn-primary">Suscríbete a La Señal</a>
+    <a href="#" class="cta-btn cta-btn-secondary">Conectar en LinkedIn →</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Geanfranco Palomino. Todos los derechos reservados.</span>
+  <span>Privacidad · Términos</span>
+</footer>
+
+</body>
+</html>
