@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow AI: Enemy or Ally of the Data Leader? · Geanfranco Palomino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  a { color: inherit; text-decoration: none; }
+  body { background: #0E1117; color: #E8E2D6; font-family: 'Hanken Grotesk', sans-serif; }
+
+  .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 52px; height: 60px; background: rgba(14,17,23,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(201,169,110,0.12); }
+  .nav-brand { font-family: Newsreader, serif; font-weight: 600; font-size: 18px; color: #E8E2D6; letter-spacing: -0.01em; }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-back { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,226,214,0.55); transition: color 0.2s; }
+  .nav-back:hover { color: #C9A96E; }
+  .nav-lang { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: rgba(232,226,214,0.4); }
+  .nav-lang a { color: rgba(232,226,214,0.4); transition: color 0.2s; }
+  .nav-lang a:hover { color: #C9A96E; }
+  .nav-lang span { color: #C9A96E; }
+
+  .article-header { padding: 120px 52px 64px; max-width: 780px; margin: 0 auto; }
+  .article-cat { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A96E; margin-bottom: 24px; }
+  .article-header h1 { font-family: Newsreader, serif; font-weight: 600; font-size: 52px; line-height: 1.08; letter-spacing: -0.02em; color: #E8E2D6; margin-bottom: 24px; }
+  .article-meta { display: flex; align-items: center; gap: 20px; font-size: 13px; color: rgba(232,226,214,0.45); letter-spacing: 0.04em; padding-bottom: 40px; border-bottom: 1px solid rgba(201,169,110,0.15); }
+
+  .article-body { max-width: 780px; margin: 0 auto; padding: 56px 52px 80px; }
+  .article-body p { font-family: Newsreader, serif; font-size: 20px; line-height: 1.78; color: rgba(232,226,214,0.88); margin-bottom: 28px; }
+  .article-body h2 { font-family: Newsreader, serif; font-weight: 600; font-size: 28px; color: #E8E2D6; margin: 52px 0 20px; letter-spacing: -0.01em; }
+  .article-body h3 { font-family: Hanken Grotesk, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #C9A96E; margin: 36px 0 12px; }
+  .article-body blockquote { border-left: 3px solid #C9A96E; padding: 4px 0 4px 28px; margin: 36px 0; }
+  .article-body blockquote p { font-style: italic; font-size: 22px; color: #E8E2D6; margin-bottom: 0; }
+  .article-body ul { margin: 0 0 28px 0; padding-left: 24px; }
+  .article-body ul li { font-family: Newsreader, serif; font-size: 20px; line-height: 1.7; color: rgba(232,226,214,0.88); margin-bottom: 10px; }
+  .stat-highlight { display: block; font-family: Newsreader, serif; font-size: 38px; font-weight: 600; color: #C9A96E; line-height: 1.1; margin: 40px 0 8px; }
+  .stat-label { font-size: 13px; color: rgba(232,226,214,0.45); letter-spacing: 0.06em; }
+
+  .author-bio { max-width: 780px; margin: 0 auto; padding: 48px 52px 80px; border-top: 1px solid rgba(201,169,110,0.15); display: flex; align-items: center; gap: 28px; }
+  .author-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: center 20%; flex-shrink: 0; border: 2px solid rgba(201,169,110,0.3); }
+  .author-name { font-family: Newsreader, serif; font-weight: 600; font-size: 18px; color: #E8E2D6; margin-bottom: 4px; }
+  .author-role { font-size: 13px; color: rgba(232,226,214,0.5); margin-bottom: 10px; }
+  .author-linkedin { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C9A96E; border-bottom: 1px solid rgba(201,169,110,0.35); padding-bottom: 1px; }
+  .author-linkedin:hover { border-color: #C9A96E; }
+
+  .related { background: #0B0E14; padding: 64px 52px; }
+  .related-inner { max-width: 780px; margin: 0 auto; }
+  .related h2 { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,226,214,0.4); margin-bottom: 32px; }
+  .related-card { display: flex; align-items: flex-start; gap: 24px; padding: 28px 0; border-top: 1px solid rgba(201,169,110,0.1); transition: opacity 0.2s; }
+  .related-card:hover { opacity: 0.75; }
+  .related-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #C9A96E; white-space: nowrap; margin-top: 4px; min-width: 120px; }
+  .related-title { font-family: Newsreader, serif; font-weight: 600; font-size: 20px; color: #E8E2D6; line-height: 1.3; }
+
+  .site-footer { background: #080A0F; color: rgba(232,226,214,0.3); padding: 28px 52px; display: flex; justify-content: space-between; font-size: 12px; letter-spacing: 0.04em; }
+
+  @media (max-width: 768px) {
+    .site-nav { padding: 0 20px; }
+    .article-header { padding: 100px 24px 48px; }
+    .article-header h1 { font-size: 36px; }
+    .article-body { padding: 40px 24px 60px; }
+    .article-body p, .article-body ul li { font-size: 18px; }
+    .article-body h2 { font-size: 24px; }
+    .author-bio { padding: 40px 24px 60px; flex-direction: column; }
+    .related { padding: 48px 24px; }
+    .related-card { flex-direction: column; gap: 8px; }
+    .site-footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index-en.html" class="nav-brand">Geanfranco Palomino</a>
+  <div class="nav-right">
+    <a href="index-en.html#writing" class="nav-back">← Writing</a>
+    <span class="nav-lang"><a href="shadow-ai.html">ES</a> / <span>EN</span></span>
+  </div>
+</nav>
+
+<header class="article-header">
+  <span class="article-cat">Applied AI</span>
+  <h1>Shadow AI: enemy or ally of the data leader?</h1>
+  <div class="article-meta">
+    <span>Geanfranco Palomino</span>
+    <span>·</span>
+    <span>May 7, 2026</span>
+    <span>·</span>
+    <span>Published on LinkedIn</span>
+  </div>
+</header>
+
+<article class="article-body">
+
+  <p>Shadow AI has already arrived in your organization. The question is not whether it exists, but what you are going to do about it.</p>
+
+  <p>We call Shadow AI the use of artificial intelligence tools by employees without the knowledge, approval or formal control of data or technology departments. It is the direct successor to Shadow IT from the 2010s, with one key difference: the speed of adoption is radically higher.</p>
+
+  <blockquote><p>Only 40% of companies have official LLM subscriptions. Yet employees at more than 90% of those same companies report regular personal AI use for work tasks.</p></blockquote>
+
+  <p>While official programs remain stuck in pilot phases, many teams are already using language models daily. The gap between business speed and corporate approval process speed has never been so evident.</p>
+
+  <h2>Two wrong responses</h2>
+
+  <h3>The Police CDO</h3>
+  <p>Blocks everything and demands prior approval for any AI tool. The result is predictable: Shadow AI does not disappear, it simply becomes more invisible. Employees look for personal alternatives, use private accounts and avoid mentioning their tools in meetings. You have created exactly the scenario you wanted to avoid: uncontrolled use, without traceability and outside the corporate firewall.</p>
+
+  <h3>The Open-Door CDO</h3>
+  <p>Removes any barrier assuming that innovation cannot be contained. The problem is that without structure, risk materializes: sensitive data exposed in external models, business decisions based on unvalidated outputs, and an attack surface that grows without control.</p>
+
+  <p>Both extremes fail for the same reason: they ignore that the demand is legitimate and that the solution lies in design, not in prohibition or blind permissiveness.</p>
+
+  <h2>The solution: pragmatic three-layer governance</h2>
+
+  <h3>Layer 1 — Free Zone with Visibility</h3>
+  <p>Personal productivity tools (summaries, drafts, translations) without prior approval, but with passive usage tracking and basic risk training. The goal is not to control, but to have visibility.</p>
+
+  <h3>Layer 2 — Enabled Zone with Conditions</h3>
+  <p>Access to business or operational data via request with validation and periodic output review. This is where use cases that generate real value but require a certain level of oversight come in.</p>
+
+  <h3>Layer 3 — Restricted Access Zone</h3>
+  <p>Customer data, regulated information and critical systems. Formal approval and complete documentation. No shortcuts here, and there should not be.</p>
+
+  <h2>The BBVA case: execution over perfection</h2>
+
+  <p>BBVA deployed ChatGPT Enterprise for 125,000 employees in two months rather than studying the problem indefinitely. The results speak for themselves:</p>
+
+  <ul>
+    <li>User growth from 3,000 to 11,000 in one year</li>
+    <li>83% weekly active users</li>
+    <li>Savings of 2 to 5 hours per person per week</li>
+    <li>74% reduction in support time in Peru operations</li>
+  </ul>
+
+  <span class="stat-highlight">74%</span>
+  <span class="stat-label">reduction in support time · BBVA Peru</span>
+
+  <p style="margin-top: 32px;">They did not wait for a perfect governance framework. They designed one that was good enough, executed it and refined it with real data. That is data leadership in practice.</p>
+
+  <h2>The uncomfortable conclusion</h2>
+
+  <p>Shadow AI is not a threat. It is a symptom indicating that there is demand and productivity potential within your organization that data teams are not meeting with sufficient speed.</p>
+
+  <blockquote><p>Shadow AI will not disappear through prohibition. It grows because data teams cannot meet organizational needs fast enough. The answer lies in designing governance that is more attractive than chaos.</p></blockquote>
+
+  <p>More attractive than chaos, faster than uncontrolled alternatives, and robust enough to protect when things fail. That is the work of the data leader today.</p>
+
+</article>
+
+<div class="author-bio">
+  <img src="foto-perfil.png" alt="Geanfranco Palomino" class="author-photo">
+  <div>
+    <div class="author-name">Geanfranco Palomino</div>
+    <div class="author-role">Data &amp; Analytics Executive · ESADE · CDO Spain &amp; Latam</div>
+    <a href="https://www.linkedin.com/in/geanfrancopalomino/" target="_blank" rel="noopener" class="author-linkedin">Connect on LinkedIn →</a>
+  </div>
+</div>
+
+<section class="related">
+  <div class="related-inner">
+    <h2>You might also like</h2>
+    <a href="power-bi-fabric-en.html" class="related-card">
+      <span class="related-cat">Data Strategy</span>
+      <span class="related-title">What will happen to Power BI Pro and Premium with the arrival of Fabric? Everything you need to know</span>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Geanfranco Palomino. All rights reserved.</span>
+  <span>Lima, Peru · Madrid, Spain</span>
+</footer>
+
+</body>
+</html>

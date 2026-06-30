@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geanfranco Palomino · Data, Analytics & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  a { color: inherit; text-decoration: none; }
+  body { background: #0E1117; color: #E8E2D6; font-family: 'Hanken Grotesk', sans-serif; }
+
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 52px;
+    height: 60px;
+    background: rgba(14,17,23,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+  }
+  .nav-brand { font-family: Newsreader, serif; font-weight: 600; font-size: 18px; color: #E8E2D6; letter-spacing: -0.01em; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,226,214,0.65); transition: color 0.2s; }
+  .nav-links a:hover { color: #C9A96E; }
+  .nav-lang { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: rgba(232,226,214,0.4); }
+  .nav-lang a { color: rgba(232,226,214,0.4); transition: color 0.2s; }
+  .nav-lang a:hover { color: #C9A96E; }
+  .nav-lang span { color: #C9A96E; }
+
+  #inicio {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 80px 60px 60px;
+    gap: 48px;
+    background: #0E1117;
+  }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; }
+  .hero-location { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A96E; margin-bottom: 36px; }
+  .hero-location::before { content: ''; display: block; width: 32px; height: 2px; background: #C9A96E; }
+  .hero-left h1 { font-family: Newsreader, serif; font-weight: 700; font-size: 86px; line-height: 0.95; letter-spacing: -0.02em; color: #E8E2D6; margin-bottom: 28px; }
+  .hero-left h1 em { font-style: italic; color: #C9A96E; font-weight: 600; }
+  .hero-value { font-size: 17px; line-height: 1.65; color: rgba(232,226,214,0.7); margin-bottom: 44px; max-width: 480px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-gold { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0E1117; background: #C9A96E; padding: 14px 30px; }
+  .btn-gold:hover { background: #d4b87e; }
+  .btn-outline { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #E8E2D6; background: transparent; padding: 13px 30px; border: 1px solid rgba(232,226,214,0.3); display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline:hover { border-color: #C9A96E; color: #C9A96E; }
+  .hero-right { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .hero-photo { width: 100%; max-width: 460px; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; filter: grayscale(20%); }
+  .hero-credentials { width: 100%; max-width: 460px; border-top: 1px solid rgba(201,169,110,0.25); padding: 18px 0 0; display: flex; flex-direction: column; gap: 8px; }
+  .hero-credentials li { list-style: none; display: flex; align-items: baseline; gap: 10px; font-size: 11.5px; letter-spacing: 0.06em; color: rgba(232,226,214,0.6); }
+  .hero-credentials li::before { content: '·'; color: #C9A96E; font-size: 18px; line-height: 1; flex-shrink: 0; }
+
+  .section { padding: 100px 60px; border-top: 1px solid rgba(201,169,110,0.12); }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A96E; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .section-tag::before { content: ''; display: block; width: 28px; height: 2px; background: #C9A96E; }
+  .section-title { font-family: Newsreader, serif; font-weight: 600; font-size: 52px; line-height: 1.04; letter-spacing: -0.02em; color: #E8E2D6; margin-bottom: 48px; }
+  .section-title em { font-style: italic; color: #C9A96E; }
+
+  #sobre-mi .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .sobre-text p { font-family: Newsreader, serif; font-size: 19px; line-height: 1.75; color: rgba(232,226,214,0.8); margin-bottom: 22px; }
+  .sobre-side { display: flex; flex-direction: column; gap: 32px; }
+  .sobre-stat { border-top: 1px solid rgba(201,169,110,0.2); padding-top: 20px; }
+  .sobre-stat-num { font-family: Newsreader, serif; font-size: 48px; font-weight: 600; color: #C9A96E; line-height: 1; margin-bottom: 6px; }
+  .sobre-stat-label { font-size: 13px; color: rgba(232,226,214,0.55); letter-spacing: 0.06em; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C9A96E; border: 1px solid rgba(201,169,110,0.35); padding: 7px 16px; }
+
+  #trayectoria { background: #0B0E14; }
+  .trayectoria-list { display: flex; flex-direction: column; }
+  .tray-item { display: grid; grid-template-columns: 180px 1fr; gap: 48px; padding: 36px 0; border-top: 1px solid rgba(201,169,110,0.12); align-items: start; }
+  .tray-item:last-child { border-bottom: 1px solid rgba(201,169,110,0.12); }
+  .tray-period { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(232,226,214,0.4); padding-top: 4px; }
+  .tray-role { font-family: Newsreader, serif; font-weight: 600; font-size: 22px; color: #E8E2D6; margin-bottom: 4px; }
+  .tray-company { font-size: 14px; font-weight: 600; color: #C9A96E; margin-bottom: 10px; letter-spacing: 0.04em; }
+  .tray-desc { font-size: 15px; line-height: 1.65; color: rgba(232,226,214,0.55); }
+
+  .speaker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 56px; }
+  .speaker-card { background: #0B0E14; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px; }
+  .speaker-year { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A96E; }
+  .speaker-event { font-family: Newsreader, serif; font-weight: 600; font-size: 20px; line-height: 1.2; color: #E8E2D6; }
+  .speaker-location { font-size: 13px; color: rgba(232,226,214,0.45); letter-spacing: 0.06em; }
+  .speaker-memberships { display: flex; flex-direction: column; gap: 0; }
+  .membership-row { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-top: 1px solid rgba(201,169,110,0.12); }
+  .membership-row:last-child { border-bottom: 1px solid rgba(201,169,110,0.12); }
+  .membership-dot { width: 6px; height: 6px; border-radius: 999px; background: #C9A96E; flex-shrink: 0; }
+  .membership-name { font-family: Newsreader, serif; font-size: 20px; font-weight: 600; color: #E8E2D6; }
+
+  #writing { background: #0B0E14; }
+  .writing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-bottom: 40px; }
+  .writing-card { background: #0E1117; padding: 36px 32px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s; }
+  .writing-card:hover { background: #141820; }
+  .writing-cat { font-size: 10.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+  .cat-ia { color: #C9A96E; }
+  .cat-estrategia { color: #7AA8D6; }
+  .writing-card h3 { font-family: Newsreader, serif; font-weight: 600; font-size: 21px; line-height: 1.22; color: #E8E2D6; flex: 1; }
+  .writing-meta { font-size: 12px; color: rgba(232,226,214,0.4); letter-spacing: 0.04em; }
+  .writing-arrow { font-size: 18px; color: rgba(201,169,110,0.4); align-self: flex-end; }
+  .writing-card:hover .writing-arrow { color: #C9A96E; }
+
+  #contacto { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .contacto-quote { font-family: Newsreader, serif; font-style: italic; font-size: 28px; line-height: 1.4; color: rgba(232,226,214,0.7); margin-bottom: 32px; }
+  .contacto-links { display: flex; flex-direction: column; gap: 16px; }
+  .contacto-link { display: flex; align-items: center; gap: 14px; font-size: 15px; font-weight: 600; color: rgba(232,226,214,0.7); padding: 18px 0; border-bottom: 1px solid rgba(201,169,110,0.12); transition: color 0.2s; }
+  .contacto-link:hover { color: #C9A96E; }
+  .contacto-link-icon { width: 36px; height: 36px; border: 1px solid rgba(201,169,110,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #C9A96E; }
+  .contacto-form { display: flex; flex-direction: column; gap: 16px; }
+  .contacto-form input, .contacto-form textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,169,110,0.2); color: #E8E2D6; font-family: 'Hanken Grotesk', sans-serif; font-size: 15px; padding: 16px 20px; outline: none; transition: border-color 0.2s; }
+  .contacto-form input:focus, .contacto-form textarea:focus { border-color: #C9A96E; }
+  .contacto-form input::placeholder, .contacto-form textarea::placeholder { color: rgba(232,226,214,0.3); }
+  .contacto-form textarea { height: 140px; resize: vertical; }
+
+  .site-footer { border-top: 1px solid rgba(201,169,110,0.12); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(232,226,214,0.35); letter-spacing: 0.06em; }
+  .footer-brand { font-family: Newsreader, serif; font-size: 16px; color: rgba(232,226,214,0.6); }
+
+  @media (max-width: 900px) {
+    .site-nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+    #inicio { grid-template-columns: 1fr; padding: 100px 24px 60px; min-height: auto; }
+    .hero-right { order: -1; }
+    .hero-photo { max-width: 100%; aspect-ratio: 4/3; }
+    .hero-left h1 { font-size: 54px; }
+    .hero-value { font-size: 15px; }
+    .hero-ctas { flex-direction: column; }
+    .btn-gold, .btn-outline { text-align: center; justify-content: center; }
+    .section { padding: 64px 24px; }
+    .section-title { font-size: 36px; margin-bottom: 32px; }
+    #sobre-mi .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tray-item { grid-template-columns: 1fr; gap: 8px; }
+    .speaker-grid { grid-template-columns: 1fr; }
+    .writing-grid { grid-template-columns: 1fr; }
+    #contacto { grid-template-columns: 1fr; gap: 48px; }
+    .site-footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-left h1 { font-size: 42px; }
+    .speaker-grid, .writing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="#inicio" class="nav-brand">Geanfranco Palomino</a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">About</a></li>
+    <li><a href="#trayectoria">Career</a></li>
+    <li><a href="#speaker">Speaker</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contacto">Contact</a></li>
+  </ul>
+  <span class="nav-lang"><a href="index.html">ES</a> / <span>EN</span></span>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-left">
+    <span class="hero-location">Lima, Perú · Madrid, España</span>
+    <h1>Geanfranco<br><em>Palomino</em></h1>
+    <p class="hero-value">I position data as a strategic asset for decision-making and the generation of sustainable value in organizations.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-gold">Contact me</a>
+      <a href="https://www.linkedin.com/in/geanfranco-palomino" target="_blank" rel="noopener" class="btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo">
+      <img src="foto-perfil.png" alt="Geanfranco Palomino">
+    </div>
+    <ul class="hero-credentials">
+      <li>Executive Master in Digital Business · ESADE Business School</li>
+      <li>Data &amp; Analytics Executive · 9+ years of experience</li>
+      <li>Club CDO Spain &amp; Latam · CIONET Spain · ESADE Alumni</li>
+      <li>International Speaker &amp; Lecturer · Latam · Europe</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre-mi" class="section">
+  <p class="section-tag">About</p>
+  <h2 class="section-title">Data, decision<br>and <em>sustainable value</em></h2>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <p>Data &amp; Analytics Executive with over 9 years leading analytics transformation initiatives and positioning data as a strategic asset for decision-making and the generation of sustainable value.</p>
+      <p>I lead multidisciplinary teams in regional environments, designing and implementing Data &amp; AI strategies that drive competitiveness, enable operational efficiency and accelerate the adoption of a data-driven culture across organizations.</p>
+      <p>My approach focuses on connecting business, data and technology to transform analytical capabilities into real impact, ensuring the construction, adoption and monetization of solutions.</p>
+      <p>I am currently pursuing the Executive Master in Digital Business at ESADE Business School, strengthening my executive vision to lead ecosystems where data, artificial intelligence and decision-making converge as a competitive advantage.</p>
+      <div class="tags">
+        <span class="tag">Data Strategy</span>
+        <span class="tag">Applied AI</span>
+        <span class="tag">Leadership</span>
+        <span class="tag">Latam · Europe</span>
+        <span class="tag">Lecturer</span>
+      </div>
+    </div>
+    <div class="sobre-side">
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">9+</div>
+        <div class="sobre-stat-label">Years leading analytics transformation</div>
+      </div>
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">2</div>
+        <div class="sobre-stat-label">Markets — Latam and Europe</div>
+      </div>
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">∞</div>
+        <div class="sobre-stat-label">Decisions turned into business value</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="trayectoria" class="section">
+  <p class="section-tag">Career</p>
+  <h2 class="section-title">Experience that<br><em>drives impact</em></h2>
+  <div class="trayectoria-list">
+    <div class="tray-item">
+      <span class="tray-period">Jan 2021 — Mar 2026</span>
+      <div>
+        <div class="tray-role">Corporate Head Data Science &amp; Analytics</div>
+        <div class="tray-company">Yanbal International · Beauty &amp; Direct Sales · Lima, Peru</div>
+        <p class="tray-desc">Designed and led the Data &amp; AI strategy for 9 countries (including Spain and Italy), positioning data as a strategic asset. Scaled the team from 2 to 10 professionals, implemented solutions adopted by 100+ stakeholders improving productivity by 50%, and collaborated directly with Bain &amp; Company to transform the corporate operating model.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">May 2019 — Dec 2020</span>
+      <div>
+        <div class="tray-role">Senior Data Scientist</div>
+        <div class="tray-company">SURA Peru · Pension Fund Management · Lima, Peru</div>
+        <p class="tray-desc">Designed the analytics roadmap aligning Data &amp; Analytics with strategic objectives. Developed 5+ predictive models achieving a 12% churn reduction, and led 10+ analytics projects presenting results and influencing senior management decisions.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">Aug 2018 — May 2019</span>
+      <div>
+        <div class="tray-role">Senior Risk Intelligence Specialist</div>
+        <div class="tray-company">BBVA · Commercial Banking · Lima, Peru</div>
+        <p class="tray-desc">Led risk analytics projects across a portfolio of 9M+ customers. Developed predictive models that improved credit approval efficiency by 5%.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">Jan 2017 — Aug 2018</span>
+      <div>
+        <div class="tray-role">Analyst — Strategic Analysis &amp; CRM</div>
+        <div class="tray-company">Banco de Crédito del Peru (BCP) · Commercial Banking · Lima, Peru</div>
+        <p class="tray-desc">Led customer contact data governance, increasing coverage by 30% and accuracy by 40% for CRM initiatives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section id="speaker" class="section">
+  <p class="section-tag">Speaker</p>
+  <h2 class="section-title">Conferences &amp;<br><em>Community</em></h2>
+  <div class="speaker-grid">
+    <div class="speaker-card">
+      <span class="speaker-year">Jun 10, 2026 · Panelist</span>
+      <div class="speaker-event">Digital Enterprise Show — Data &amp; CDO Summit</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Data Governance in the Age of Sovereignty &amp; AI"</div>
+      <div class="speaker-location">Málaga, Spain</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">May 13, 2026 · Panelist</span>
+      <div class="speaker-event">CDO Day</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"The future of data and AI: strategic vision for the next decade"</div>
+      <div class="speaker-location">Madrid, Spain</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">May 11, 2026 · VIP Session</span>
+      <div class="speaker-event">CDO HUB</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">Closed-door debate on challenges and trends with CDOs from leading companies</div>
+      <div class="speaker-location">Madrid, Spain</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Mar 23, 2026 · Panelist</span>
+      <div class="speaker-event">Smart Data Spain Summit</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"From investment to impact: costs, smart decisions and real ROI"</div>
+      <div class="speaker-location">Madrid, Spain</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Feb 21, 2026 · Keynote</span>
+      <div class="speaker-event">Microsoft Global Power Platform Bootcamp</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Building a data architecture in Microsoft: From data to business value"</div>
+      <div class="speaker-location">Valladolid, Spain</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Aug 16, 2025 · Keynote</span>
+      <div class="speaker-event">AI &amp; Data Conference</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Adoption of Artificial Intelligence in the business context"</div>
+      <div class="speaker-location">Lima, Peru</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Oct 29, 2024 · Keynote</span>
+      <div class="speaker-event">Financial Education Week — BBVA Foundation &amp; Alfi</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Artificial Intelligence applied to finance"</div>
+      <div class="speaker-location">Lima, Peru</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Jun 13, 2024 · Keynote</span>
+      <div class="speaker-event">Annual Marketing Congress Peru - CAMP</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Practical applications of Artificial Intelligence in Marketing"</div>
+      <div class="speaker-location">Lima, Peru</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">Sep 29, 2023 · Keynote</span>
+      <div class="speaker-event">International Seminar on Artificial Intelligence for Business</div>
+      <div class="speaker-location" style="font-size:12px;color:rgba(232,226,214,0.5);margin-top:4px;font-style:italic">"Applications of AI in the business and industrial environment"</div>
+      <div class="speaker-location">Cusco, Peru</div>
+    </div>
+  </div>
+  <div class="speaker-memberships">
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">Club CDO Spain &amp; Latam</span>
+    </div>
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">CIONET Spain</span>
+    </div>
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">ESADE Alumni</span>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing" class="section">
+  <p class="section-tag">Writing</p>
+  <h2 class="section-title">Ideas on<br><em>Data &amp; AI</em></h2>
+  <div class="writing-grid">
+    <a href="shadow-ai-en.html" class="writing-card">
+      <span class="writing-cat cat-ia">Applied AI</span>
+      <h3>Shadow AI: enemy or ally of the data leader?</h3>
+      <span class="writing-meta">May 7, 2026 · LinkedIn</span>
+      <span class="writing-arrow">→</span>
+    </a>
+    <a href="power-bi-fabric-en.html" class="writing-card">
+      <span class="writing-cat cat-estrategia">Data Strategy</span>
+      <h3>What will happen to Power BI Pro and Premium with the arrival of Fabric? Everything you need to know</h3>
+      <span class="writing-meta">Jun 5, 2025 · LinkedIn</span>
+      <span class="writing-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="section">
+  <div>
+    <p class="section-tag">Contact</p>
+    <h2 class="section-title">Let's talk<br><em>data and AI</em></h2>
+    <p class="contacto-quote">"Competitive advantage is no longer about having data. It's about the speed at which an organization turns data into decisions."</p>
+    <div class="contacto-links">
+      <a href="https://www.linkedin.com/in/geanfranco-palomino" target="_blank" rel="noopener" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </span>
+        LinkedIn
+      </a>
+      <a href="mailto:geanfranco.palomino@wirbi.com" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        geanfranco.palomino@wirbi.com
+      </a>
+      <a href="newsletter.html" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </span>
+        Newsletter — La Señal
+      </a>
+    </div>
+  </div>
+  <div>
+    <form class="contacto-form" onsubmit="return false">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="Your email">
+      <input type="text" placeholder="Company / Organization">
+      <textarea placeholder="How can I help you?"></textarea>
+      <button type="submit" class="btn-gold" style="border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;width:100%;padding:16px;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-brand">Geanfranco Palomino</span>
+  <span>© 2026 · Data, Analytics &amp; AI · Latam · Europe</span>
+  <span>Privacy · Terms</span>
+</footer>
+
+</body>
+</html>
