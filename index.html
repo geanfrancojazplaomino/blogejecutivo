@@ -9,98 +9,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  a { color: inherit; }
-  body { background: #F6F3EC; font-family: 'Hanken Grotesk', sans-serif; }
+  html { scroll-behavior: smooth; }
+  a { color: inherit; text-decoration: none; }
+  body { background: #0E1117; color: #E8E2D6; font-family: 'Hanken Grotesk', sans-serif; }
 
-  /* Header */
-  .site-header {
+  /* ── NAV ── */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 52px;
-    background: #F6F3EC;
-    border-bottom: 1px solid rgba(28,43,74,0.12);
+    padding: 0 52px;
+    height: 60px;
+    background: rgba(14,17,23,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,169,110,0.12);
   }
-  .brand { display: flex; flex-direction: column; gap: 2px; }
-  .brand-name {
+  .nav-brand {
     font-family: Newsreader, serif;
     font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.015em;
-    color: #1C2B4A;
-    text-decoration: none;
+    font-size: 18px;
+    color: #E8E2D6;
+    letter-spacing: -0.01em;
   }
-  .brand-tagline {
-    font-size: 10px;
-    letter-spacing: 0.2em;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #9A9488;
+    color: rgba(232,226,214,0.65);
+    transition: color 0.2s;
   }
-  .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+  .nav-links a:hover { color: #C9A96E; }
+  .nav-lang {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: rgba(232,226,214,0.4);
   }
-  .main-nav a {
-    font-size: 15px;
-    font-weight: 500;
-    color: #1B1F27;
-    text-decoration: none;
-  }
-  .main-nav .lang {
-    font-size: 12px;
-    color: #9A9488;
-    letter-spacing: 0.06em;
-  }
-  .btn-subscribe {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    background: #1C2B4A;
-    padding: 10px 20px;
-    border-radius: 999px;
-    text-decoration: none;
-  }
+  .nav-lang span { color: #C9A96E; }
 
-  /* Pillars bar */
-  .pillars-bar {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 14px 52px;
-    background: #F6F3EC;
-    border-bottom: 1px solid rgba(28,43,74,0.12);
-  }
-  .pillars-bar .label {
-    font-family: Newsreader, serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: #1C2B4A;
-  }
-  .pillars-bar .divider { width: 1px; height: 18px; background: rgba(28,43,74,0.2); }
-  .pillars-bar a {
-    font-size: 14px;
-    color: #43403A;
-    text-decoration: none;
-  }
-  .pillars-bar a:hover { color: #1C2B4A; }
-
-  /* Hero — estilo ejecutivo oscuro */
-  .hero {
-    background: #0E1117;
-    min-height: 92vh;
+  /* ── HERO ── */
+  #inicio {
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 60px;
+    padding: 80px 60px 60px;
     gap: 48px;
+    background: #0E1117;
   }
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0;
-  }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; }
   .hero-location {
     display: flex;
     align-items: center;
@@ -119,7 +86,7 @@
     height: 2px;
     background: #C9A96E;
   }
-  .hero h1 {
+  .hero-left h1 {
     font-family: Newsreader, serif;
     font-weight: 700;
     font-size: 86px;
@@ -128,59 +95,48 @@
     color: #E8E2D6;
     margin-bottom: 28px;
   }
-  .hero h1 em {
+  .hero-left h1 em {
     font-style: italic;
     color: #C9A96E;
     font-weight: 600;
   }
   .hero-value {
-    font-family: 'Hanken Grotesk', sans-serif;
     font-size: 17px;
     line-height: 1.65;
     color: rgba(232,226,214,0.7);
     margin-bottom: 44px;
     max-width: 480px;
   }
-  .hero-ctas {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .hero-btn-primary {
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 13px;
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-gold {
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #0E1117;
     background: #C9A96E;
     padding: 14px 30px;
-    text-decoration: none;
   }
-  .hero-btn-primary:hover { background: #d4b87e; }
-  .hero-btn-secondary {
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 13px;
+  .btn-gold:hover { background: #d4b87e; }
+  .btn-outline {
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #E8E2D6;
     background: transparent;
-    padding: 14px 30px;
+    padding: 13px 30px;
     border: 1px solid rgba(232,226,214,0.3);
-    text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
   }
-  .hero-btn-secondary:hover { border-color: #E8E2D6; }
-
-  /* Foto + credenciales */
+  .btn-outline:hover { border-color: #C9A96E; color: #C9A96E; }
   .hero-right {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 22px;
   }
   .hero-photo {
     width: 100%;
@@ -214,247 +170,372 @@
     font-size: 11.5px;
     letter-spacing: 0.06em;
     color: rgba(232,226,214,0.6);
-    font-family: 'Hanken Grotesk', sans-serif;
   }
   .hero-credentials li::before {
     content: '·';
     color: #C9A96E;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
     flex-shrink: 0;
   }
 
-  /* Articles grid */
-  .articles-section {
-    padding: 60px 52px 70px;
-    background: #fff;
+  /* ── SECCIÓN BASE ── */
+  .section {
+    padding: 100px 60px;
+    border-top: 1px solid rgba(201,169,110,0.12);
   }
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 36px;
-    border-bottom: 1px solid rgba(28,43,74,0.14);
-    padding-bottom: 18px;
-  }
-  .section-header h2 {
-    font-family: Newsreader, serif;
-    font-weight: 600;
-    font-size: 28px;
-    color: #181C24;
-  }
-  .section-header a {
-    font-size: 14px;
-    font-weight: 600;
-    color: #1C2B4A;
-    text-decoration: none;
-  }
-  .articles-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 38px 36px;
-  }
-  .article-card {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-  }
-  .card-img {
-    aspect-ratio: 16/10;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-  .card-img.light { background: linear-gradient(135deg, #D9D2C4, #C3BBA9); color: rgba(28,43,74,0.42); }
-  .card-img.dark { background: linear-gradient(135deg, #2A3D60, #1C2B4A); color: rgba(255,255,255,0.4); }
-  .card-cat {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin: 16px 0 8px;
-  }
-  .cat-estrategia { color: #1C2B4A; }
-  .cat-ia { color: #A05A2B; }
-  .cat-latam { color: #1C7A5E; }
-  .cat-liderazgo { color: #7A3FA0; }
-  .article-card h3 {
-    font-family: Newsreader, serif;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.22;
-    color: #1A1E27;
-    margin-bottom: 10px;
-  }
-  .card-date {
-    font-size: 13px;
-    color: #8A857B;
-  }
-
-  /* Quote */
-  .quote-section {
-    padding: 78px 52px;
-    background: #F6F3EC;
-    text-align: center;
-  }
-  .quote-section blockquote {
-    font-family: Newsreader, serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 33px;
-    line-height: 1.4;
-    color: #1C2B4A;
-    max-width: 880px;
-    margin: 0 auto 24px;
-    letter-spacing: -0.01em;
-  }
-  .quote-section cite {
-    font-style: normal;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #8A857B;
-    font-weight: 600;
-  }
-
-  /* Newsletter */
-  .newsletter-section {
-    background: #1C2B4A;
-    color: #fff;
-    padding: 60px 52px;
-  }
-  .newsletter-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .newsletter-label {
+  .section-tag {
     font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #9DB0D6;
-    font-weight: 700;
-    margin-bottom: 14px;
+    color: #C9A96E;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .newsletter-section h2 {
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: #C9A96E;
+  }
+  .section-title {
     font-family: Newsreader, serif;
     font-weight: 600;
-    font-size: 34px;
-    line-height: 1.12;
-    margin-bottom: 14px;
+    font-size: 52px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: #E8E2D6;
+    margin-bottom: 48px;
   }
-  .newsletter-section p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.72); }
-  .email-row { display: flex; gap: 10px; margin-bottom: 14px; }
-  .email-row input {
-    flex: 1;
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 15px;
-    padding: 15px 18px;
-    border: none;
-    border-radius: 6px;
-    background: #fff;
-    color: #1B1F27;
+  .section-title em {
+    font-style: italic;
+    color: #C9A96E;
   }
-  .email-row button {
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #1C2B4A;
-    background: #F6F3EC;
-    border: none;
-    border-radius: 6px;
-    padding: 0 26px;
-    cursor: pointer;
-  }
-  .email-row button:hover { background: #fff; }
-  .newsletter-fine { font-size: 13px; color: rgba(255,255,255,0.55); }
 
-  /* Footer */
-  .site-footer {
-    background: #15203A;
-    color: #CBD2E0;
-    padding: 56px 52px 34px;
+  /* ── SOBRE MÍ ── */
+  #sobre-mi .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
   }
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
+  .sobre-text p {
+    font-family: Newsreader, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    color: rgba(232,226,214,0.8);
+    margin-bottom: 22px;
+  }
+  .sobre-side { display: flex; flex-direction: column; gap: 32px; }
+  .sobre-stat {
+    border-top: 1px solid rgba(201,169,110,0.2);
+    padding-top: 20px;
+  }
+  .sobre-stat-num {
+    font-family: Newsreader, serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #C9A96E;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .sobre-stat-label {
+    font-size: 13px;
+    color: rgba(232,226,214,0.55);
+    letter-spacing: 0.06em;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    border: 1px solid rgba(201,169,110,0.35);
+    padding: 7px 16px;
+  }
+
+  /* ── TRAYECTORIA ── */
+  #trayectoria { background: #0B0E14; }
+  .trayectoria-list { display: flex; flex-direction: column; }
+  .tray-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
     gap: 48px;
-    padding-bottom: 38px;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 36px 0;
+    border-top: 1px solid rgba(201,169,110,0.12);
+    align-items: start;
   }
-  .footer-brand { max-width: 320px; }
-  .footer-brand-name {
+  .tray-item:last-child { border-bottom: 1px solid rgba(201,169,110,0.12); }
+  .tray-period {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(232,226,214,0.4);
+    padding-top: 4px;
+  }
+  .tray-role {
     font-family: Newsreader, serif;
     font-weight: 600;
     font-size: 22px;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-  .footer-brand p { font-size: 14px; line-height: 1.6; color: #9AA4B8; margin-bottom: 20px; }
-  .footer-social { display: flex; gap: 18px; font-size: 13px; font-weight: 600; color: #fff; }
-  .footer-social a { text-decoration: none; }
-  .footer-social a:hover { opacity: 0.8; }
-  .footer-links { display: flex; gap: 64px; }
-  .footer-col { display: flex; flex-direction: column; gap: 12px; }
-  .footer-col-title {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #7C8AA8;
-    font-weight: 700;
+    color: #E8E2D6;
     margin-bottom: 4px;
   }
-  .footer-col a { font-size: 14px; text-decoration: none; color: #CBD2E0; }
-  .footer-col a:hover { color: #fff; }
-  .footer-bottom {
+  .tray-company {
+    font-size: 14px;
+    font-weight: 600;
+    color: #C9A96E;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+  .tray-desc {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(232,226,214,0.55);
+  }
+
+  /* ── SPEAKER ── */
+  .speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 56px;
+  }
+  .speaker-card {
+    background: #0B0E14;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .speaker-year {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A96E;
+  }
+  .speaker-event {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #E8E2D6;
+  }
+  .speaker-location {
+    font-size: 13px;
+    color: rgba(232,226,214,0.45);
+    letter-spacing: 0.06em;
+  }
+  .speaker-memberships {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .membership-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(201,169,110,0.12);
+  }
+  .membership-row:last-child { border-bottom: 1px solid rgba(201,169,110,0.12); }
+  .membership-dot {
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: #C9A96E;
+    flex-shrink: 0;
+  }
+  .membership-name {
+    font-family: Newsreader, serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #E8E2D6;
+  }
+
+  /* ── WRITING ── */
+  #writing { background: #0B0E14; }
+  .writing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+  .writing-card {
+    background: #0E1117;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: background 0.2s;
+  }
+  .writing-card:hover { background: #141820; }
+  .writing-cat {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .cat-ia { color: #C9A96E; }
+  .cat-estrategia { color: #7AA8D6; }
+  .cat-latam { color: #7AC9A0; }
+  .cat-liderazgo { color: #C97AB2; }
+  .writing-card h3 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 1.22;
+    color: #E8E2D6;
+    flex: 1;
+  }
+  .writing-meta {
+    font-size: 12px;
+    color: rgba(232,226,214,0.4);
+    letter-spacing: 0.04em;
+  }
+  .writing-arrow {
+    font-size: 18px;
+    color: rgba(201,169,110,0.4);
+    align-self: flex-end;
+  }
+  .writing-card:hover .writing-arrow { color: #C9A96E; }
+  .writing-cta { text-align: center; }
+
+  /* ── CONTACTO ── */
+  #contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .contacto-quote {
+    font-family: Newsreader, serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.4;
+    color: rgba(232,226,214,0.7);
+    margin-bottom: 32px;
+  }
+  .contacto-links { display: flex; flex-direction: column; gap: 16px; }
+  .contacto-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(232,226,214,0.7);
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+    transition: color 0.2s;
+  }
+  .contacto-link:hover { color: #C9A96E; }
+  .contacto-link-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,169,110,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: #C9A96E;
+  }
+  .contacto-form { display: flex; flex-direction: column; gap: 16px; }
+  .contacto-form input,
+  .contacto-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: #E8E2D6;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 15px;
+    padding: 16px 20px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .contacto-form input:focus,
+  .contacto-form textarea:focus { border-color: #C9A96E; }
+  .contacto-form input::placeholder,
+  .contacto-form textarea::placeholder { color: rgba(232,226,214,0.3); }
+  .contacto-form textarea { height: 140px; resize: vertical; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid rgba(201,169,110,0.12);
+    padding: 32px 60px;
     display: flex;
     justify-content: space-between;
-    padding-top: 22px;
-    font-size: 12.5px;
-    color: #6E7896;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(232,226,214,0.35);
+    letter-spacing: 0.06em;
+  }
+  .footer-brand {
+    font-family: Newsreader, serif;
+    font-size: 16px;
+    color: rgba(232,226,214,0.6);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .site-nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+
+    #inicio {
+      grid-template-columns: 1fr;
+      padding: 100px 24px 60px;
+      min-height: auto;
+    }
+    .hero-right { order: -1; }
+    .hero-photo { max-width: 100%; aspect-ratio: 4/3; }
+    .hero-left h1 { font-size: 54px; }
+    .hero-value { font-size: 15px; }
+    .hero-ctas { flex-direction: column; }
+    .btn-gold, .btn-outline { text-align: center; justify-content: center; }
+
+    .section { padding: 64px 24px; }
+    .section-title { font-size: 36px; margin-bottom: 32px; }
+
+    #sobre-mi .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tray-item { grid-template-columns: 1fr; gap: 8px; }
+    .speaker-grid { grid-template-columns: 1fr; }
+    .writing-grid { grid-template-columns: 1fr; }
+    #contacto { grid-template-columns: 1fr; gap: 48px; }
+    .site-footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-left h1 { font-size: 42px; }
+    .speaker-grid, .writing-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="brand">
-    <a href="index.html" class="brand-name">Geanfranco Palomino</a>
-    <span class="brand-tagline">Data · Analytics · IA</span>
-  </div>
-  <nav class="main-nav">
-    <a href="index.html">Inicio</a>
-    <a href="#">Artículos</a>
-    <a href="sobre-mi.html">Sobre mí</a>
-    <span class="lang">ES / <span style="color:#C9C4B8">EN</span></span>
-    <a href="newsletter.html" class="btn-subscribe">Suscríbete</a>
-  </nav>
-</header>
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="#inicio" class="nav-brand">Geanfranco Palomino</a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#trayectoria">Trayectoria</a></li>
+    <li><a href="#speaker">Speaker</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <span class="nav-lang"><span>ES</span> / EN</span>
+</nav>
 
-<div class="pillars-bar">
-  <span class="label">Pilares</span>
-  <span class="divider"></span>
-  <a href="#">Estrategia de Datos</a>
-  <a href="#">IA Aplicada</a>
-  <a href="#">Liderazgo de Datos</a>
-  <a href="#">Latam ↔ Europa</a>
-</div>
-
-<section class="hero">
+<!-- HERO -->
+<section id="inicio">
   <div class="hero-left">
     <span class="hero-location">Lima, Perú · Madrid, España</span>
     <h1>Geanfranco<br><em>Palomino</em></h1>
     <p class="hero-value">Posiciono el dato como un activo estratégico para la toma de decisiones y la generación de valor sostenible en las organizaciones.</p>
     <div class="hero-ctas">
-      <a href="sobre-mi.html" class="hero-btn-primary">Escríbeme</a>
-      <a href="https://www.linkedin.com/in/geanfranco-palomino" target="_blank" rel="noopener" class="hero-btn-secondary">
+      <a href="#contacto" class="btn-gold">Escríbeme</a>
+      <a href="https://www.linkedin.com/in/geanfranco-palomino" target="_blank" rel="noopener" class="btn-outline">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         LinkedIn
       </a>
@@ -473,156 +554,221 @@
   </div>
 </section>
 
-<section class="articles-section">
-  <div class="section-header">
-    <h2>Últimos artículos</h2>
-    <a href="#">Ver todos →</a>
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="section">
+  <p class="section-tag">Sobre mí</p>
+  <h2 class="section-title">Dato, decisión<br>y <em>valor sostenible</em></h2>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <p>Ejecutivo en Data &amp; Analytics, con más de 9 años liderando iniciativas de transformación analítica y posicionando el dato como un activo estratégico para la toma de decisiones y la generación de valor sostenible.</p>
+      <p>Lidero equipos multidisciplinarios en entornos regionales, diseñando e implementando estrategias de Data &amp; AI que impulsan la competitividad, habilitan eficiencia operativa y aceleran la adopción de una cultura data-driven en las organizaciones.</p>
+      <p>Mi enfoque se centra en conectar negocio, datos y tecnología para transformar capacidades analíticas en impacto real, asegurando la construcción, adopción y monetización de soluciones.</p>
+      <p>Actualmente curso el Executive Master in Digital Business en ESADE Business School, fortaleciendo mi visión ejecutiva para liderar ecosistemas donde datos, inteligencia artificial y toma de decisiones convergen como ventaja competitiva.</p>
+      <div class="tags">
+        <span class="tag">Data Strategy</span>
+        <span class="tag">AI Aplicada</span>
+        <span class="tag">Liderazgo</span>
+        <span class="tag">Latam · Europa</span>
+        <span class="tag">Docente</span>
+      </div>
+    </div>
+    <div class="sobre-side">
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">9+</div>
+        <div class="sobre-stat-label">Años liderando transformación analítica</div>
+      </div>
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">2</div>
+        <div class="sobre-stat-label">Mercados — Latam y Europa</div>
+      </div>
+      <div class="sobre-stat">
+        <div class="sobre-stat-num">∞</div>
+        <div class="sobre-stat-label">Decisiones convertidas en valor de negocio</div>
+      </div>
+    </div>
   </div>
-  <div class="articles-grid">
+</section>
 
-    <a href="#" class="article-card">
-      <div class="card-img light">Imagen</div>
-      <span class="card-cat cat-estrategia">Estrategia de Datos</span>
+<!-- TRAYECTORIA -->
+<section id="trayectoria" class="section">
+  <p class="section-tag">Trayectoria</p>
+  <h2 class="section-title">Experiencia que<br><em>genera impacto</em></h2>
+  <div class="trayectoria-list">
+    <div class="tray-item">
+      <span class="tray-period">2022 — Presente</span>
+      <div>
+        <div class="tray-role">Chief Data &amp; Analytics Officer</div>
+        <div class="tray-company">Organización regional · Latam &amp; Europa</div>
+        <p class="tray-desc">Liderazgo de la estrategia de datos corporativa, construcción de equipos de Analytics e IA, y posicionamiento del dato como activo estratégico en la toma de decisiones ejecutivas.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">2019 — 2022</span>
+      <div>
+        <div class="tray-role">Head of Data &amp; Analytics</div>
+        <div class="tray-company">Empresa tecnológica · Latam</div>
+        <p class="tray-desc">Diseño e implementación de plataformas analíticas y cultura data-driven. Habilitación de eficiencia operativa y aceleración de la adopción de IA en unidades de negocio.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">2016 — 2019</span>
+      <div>
+        <div class="tray-role">Data Analytics Manager</div>
+        <div class="tray-company">Sector financiero · Perú</div>
+        <p class="tray-desc">Transformación del modelo de analítica comercial. Implementación de modelos predictivos y dashboards ejecutivos para soporte a la decisión en el C-suite.</p>
+      </div>
+    </div>
+    <div class="tray-item">
+      <span class="tray-period">2015 — 2016</span>
+      <div>
+        <div class="tray-role">Business Intelligence Analyst</div>
+        <div class="tray-company">Consultoría · Lima, Perú</div>
+        <p class="tray-desc">Desarrollo de soluciones de inteligencia de negocios para clientes en retail, banca y telecomunicaciones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section id="speaker" class="section">
+  <p class="section-tag">Speaker</p>
+  <h2 class="section-title">Conferencias &amp;<br><em>Comunidad</em></h2>
+  <div class="speaker-grid">
+    <div class="speaker-card">
+      <span class="speaker-year">2026</span>
+      <div class="speaker-event">Data &amp; AI Leadership Summit</div>
+      <div class="speaker-location">Madrid, España</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">2025</span>
+      <div class="speaker-event">CDO Forum Latam</div>
+      <div class="speaker-location">Lima, Perú</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">2025</span>
+      <div class="speaker-event">ESADE Executive Forum</div>
+      <div class="speaker-location">Barcelona, España</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">2024</span>
+      <div class="speaker-event">Data Strategy Conference</div>
+      <div class="speaker-location">Bogotá, Colombia</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">2024</span>
+      <div class="speaker-event">IA Aplicada al Negocio</div>
+      <div class="speaker-location">Santiago, Chile</div>
+    </div>
+    <div class="speaker-card">
+      <span class="speaker-year">2023</span>
+      <div class="speaker-event">Analytics &amp; Big Data Iberia</div>
+      <div class="speaker-location">Madrid, España</div>
+    </div>
+  </div>
+  <div class="speaker-memberships">
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">Club CDO Spain &amp; Latam</span>
+    </div>
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">CIONET Spain</span>
+    </div>
+    <div class="membership-row">
+      <span class="membership-dot"></span>
+      <span class="membership-name">ESADE Alumni</span>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing" class="section">
+  <p class="section-tag">Writing</p>
+  <h2 class="section-title">Ideas sobre<br><em>Data &amp; AI</em></h2>
+  <div class="writing-grid">
+    <a href="articulo.html" class="writing-card">
+      <span class="writing-cat cat-ia">IA Aplicada</span>
+      <h3>Por qué el 80% de las iniciativas de IA mueren antes de producción</h3>
+      <span class="writing-meta">25 jun 2026 · 9 min</span>
+      <span class="writing-arrow">→</span>
+    </a>
+    <a href="#" class="writing-card">
+      <span class="writing-cat cat-estrategia">Estrategia de Datos</span>
       <h3>Data governance no es burocracia: es tu próxima ventaja competitiva</h3>
-      <span class="card-date">18 jun 2026 · 7 min</span>
+      <span class="writing-meta">18 jun 2026 · 7 min</span>
+      <span class="writing-arrow">→</span>
     </a>
-
-    <a href="#" class="article-card">
-      <div class="card-img dark">Imagen</div>
-      <span class="card-cat cat-latam">Latam ↔ Europa</span>
+    <a href="#" class="writing-card">
+      <span class="writing-cat cat-latam">Latam ↔ Europa</span>
       <h3>Latam y Europa frente a la IA: dos velocidades, una oportunidad</h3>
-      <span class="card-date">11 jun 2026 · 8 min</span>
+      <span class="writing-meta">11 jun 2026 · 8 min</span>
+      <span class="writing-arrow">→</span>
     </a>
-
-    <a href="#" class="article-card">
-      <div class="card-img light">Imagen</div>
-      <span class="card-cat cat-liderazgo">Liderazgo de Datos</span>
-      <h3>Cómo se estructura un equipo de datos que sí entrega</h3>
-      <span class="card-date">04 jun 2026 · 6 min</span>
-    </a>
-
-    <a href="#" class="article-card">
-      <div class="card-img dark">Imagen</div>
-      <span class="card-cat cat-ia">IA Aplicada</span>
+    <a href="#" class="writing-card">
+      <span class="writing-cat cat-ia">IA Aplicada</span>
       <h3>El verdadero costo de un proyecto de GenAI en producción</h3>
-      <span class="card-date">28 may 2026 · 9 min</span>
+      <span class="writing-meta">28 may 2026 · 9 min</span>
+      <span class="writing-arrow">→</span>
     </a>
-
-    <a href="#" class="article-card">
-      <div class="card-img light">Imagen</div>
-      <span class="card-cat cat-estrategia">Estrategia de Datos</span>
+    <a href="#" class="writing-card">
+      <span class="writing-cat cat-estrategia">Estrategia de Datos</span>
       <h3>Del dato al P&amp;L: cómo presentar analítica ante un board</h3>
-      <span class="card-date">21 may 2026 · 7 min</span>
+      <span class="writing-meta">21 may 2026 · 7 min</span>
+      <span class="writing-arrow">→</span>
     </a>
-
-    <a href="#" class="article-card">
-      <div class="card-img dark">Imagen</div>
-      <span class="card-cat cat-liderazgo">Liderazgo de Datos</span>
+    <a href="#" class="writing-card">
+      <span class="writing-cat cat-liderazgo">Liderazgo de Datos</span>
       <h3>Data literacy en el C-suite: el cuello de botella invisible</h3>
-      <span class="card-date">14 may 2026 · 6 min</span>
+      <span class="writing-meta">14 may 2026 · 6 min</span>
+      <span class="writing-arrow">→</span>
     </a>
-
   </div>
 </section>
 
-<section class="quote-section">
-  <blockquote>"La ventaja competitiva ya no está en tener datos. Está en la velocidad con la que una organización los convierte en decisiones."</blockquote>
-  <cite>Geanfranco Palomino</cite>
-</section>
-
-<section class="newsletter-section">
-  <div class="newsletter-grid">
-    <div>
-      <p class="newsletter-label">La Señal · Newsletter trimestral</p>
-      <h2>Las 5 señales en Data &amp; AI que llevarás a tu próximo board.</h2>
-      <p>Cada trimestre, con lectura regulatoria de Latam y Europa. Directo, ejecutable.</p>
+<!-- CONTACTO -->
+<section id="contacto" class="section">
+  <div>
+    <p class="section-tag">Contacto</p>
+    <h2 class="section-title">Hablemos de<br><em>datos e IA</em></h2>
+    <p class="contacto-quote">"La ventaja competitiva ya no está en tener datos. Está en la velocidad con la que una organización los convierte en decisiones."</p>
+    <div class="contacto-links">
+      <a href="https://www.linkedin.com/in/geanfranco-palomino" target="_blank" rel="noopener" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </span>
+        LinkedIn
+      </a>
+      <a href="mailto:geanfranco.palomino@wirbi.com" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        geanfranco.palomino@wirbi.com
+      </a>
+      <a href="newsletter.html" class="contacto-link">
+        <span class="contacto-link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </span>
+        Newsletter — La Señal
+      </a>
     </div>
-    <div>
-      <div class="email-row">
-        <input type="email" placeholder="tu@empresa.com">
-        <button>Suscríbete</button>
-      </div>
-      <p class="newsletter-fine">Sin spam. Una edición por trimestre. Cancela cuando quieras.</p>
-    </div>
+  </div>
+  <div>
+    <form class="contacto-form" onsubmit="return false">
+      <input type="text" placeholder="Tu nombre">
+      <input type="email" placeholder="Tu email">
+      <input type="text" placeholder="Empresa / Organización">
+      <textarea placeholder="¿En qué puedo ayudarte?"></textarea>
+      <button type="submit" class="btn-gold" style="border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;width:100%;padding:16px;">Enviar mensaje</button>
+    </form>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-brand-name">Geanfranco Palomino</div>
-      <p>Estrategia de Datos, Analytics e Inteligencia Artificial para líderes en Latam y Europa.</p>
-      <div class="footer-social">
-        <a href="#">LinkedIn</a>
-        <a href="#">X</a>
-        <a href="#">Substack</a>
-      </div>
-    </div>
-    <div class="footer-links">
-      <div class="footer-col">
-        <span class="footer-col-title">Contenido</span>
-        <a href="#">Estrategia de Datos</a>
-        <a href="#">IA Aplicada</a>
-        <a href="#">Liderazgo de Datos</a>
-        <a href="#">Latam ↔ Europa</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-title">Recursos</span>
-        <a href="newsletter.html">Newsletter</a>
-        <a href="#">Maturity Scorecard</a>
-        <a href="#">Briefing del board</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-title">Sobre</span>
-        <a href="#">Perfil</a>
-        <a href="#">Conferencias</a>
-        <a href="#">Contacto</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Geanfranco Palomino. Todos los derechos reservados.</span>
-    <span>Privacidad · Términos</span>
-  </div>
+  <span class="footer-brand">Geanfranco Palomino</span>
+  <span>© 2026 · Data, Analytics &amp; IA · Latam · Europa</span>
+  <span>Privacidad · Términos</span>
 </footer>
-
-<style>
-@media (max-width: 768px) {
-  .site-header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
-  .main-nav { gap: 14px; flex-wrap: wrap; }
-  .main-nav a { font-size: 14px; }
-  .main-nav .lang { display: none; }
-  .btn-subscribe { padding: 8px 16px; font-size: 13px; }
-
-  .pillars-bar { padding: 12px 20px; gap: 14px; overflow-x: auto; white-space: nowrap; }
-
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 52px 24px 40px; }
-  .hero h1 { font-size: 58px; }
-  .hero-value { font-size: 15px; margin-bottom: 32px; }
-  .hero-ctas { flex-direction: column; gap: 10px; }
-  .hero-btn-primary, .hero-btn-secondary { text-align: center; justify-content: center; }
-  .hero-right { order: -1; }
-  .hero-photo { height: 340px; }
-  .hero-credentials { padding: 16px 20px; gap: 10px; }
-
-  .articles-section { padding: 40px 20px 50px; }
-  .articles-grid { grid-template-columns: 1fr; gap: 32px; }
-
-  .quote-section { padding: 48px 20px; }
-  .quote-section blockquote { font-size: 22px; }
-
-  .newsletter-section { padding: 40px 20px; }
-  .newsletter-grid { grid-template-columns: 1fr; gap: 28px; }
-  .email-row { flex-direction: column; }
-  .email-row button { padding: 14px; border-radius: 6px; }
-
-  .site-footer { padding: 40px 20px 24px; }
-  .footer-top { flex-direction: column; gap: 32px; }
-  .footer-links { flex-wrap: wrap; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-}
-</style>
 
 </body>
 </html>
