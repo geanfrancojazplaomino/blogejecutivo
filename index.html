@@ -743,11 +743,11 @@
     </div>
   </div>
   <div>
-    <form class="contacto-form" onsubmit="return false">
-      <input type="text" placeholder="Tu nombre">
-      <input type="email" placeholder="Tu email">
-      <input type="text" placeholder="Empresa / Organización">
-      <textarea placeholder="¿En qué puedo ayudarte?"></textarea>
+    <form class="contacto-form" action="https://formspree.io/f/mojonbva" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Tu email" required>
+      <input type="text" name="empresa" placeholder="Empresa / Organización">
+      <textarea name="mensaje" placeholder="¿En qué puedo ayudarte?"></textarea>
       <button type="submit" class="btn-gold" style="border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;width:100%;padding:16px;">Enviar mensaje</button>
     </form>
   </div>

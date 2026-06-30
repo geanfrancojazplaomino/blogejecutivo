@@ -385,11 +385,11 @@
     </div>
   </div>
   <div>
-    <form class="contacto-form" onsubmit="return false">
-      <input type="text" placeholder="Your name">
-      <input type="email" placeholder="Your email">
-      <input type="text" placeholder="Company / Organization">
-      <textarea placeholder="How can I help you?"></textarea>
+    <form class="contacto-form" action="https://formspree.io/f/mojonbva" method="POST">
+      <input type="text" name="nombre" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <input type="text" name="empresa" placeholder="Company / Organization">
+      <textarea name="mensaje" placeholder="How can I help you?"></textarea>
       <button type="submit" class="btn-gold" style="border:none;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;width:100%;padding:16px;">Send message</button>
     </form>
   </div>
