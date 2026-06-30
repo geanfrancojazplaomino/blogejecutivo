@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow AI: ¿enemigo o aliado del líder de datos? · Geanfranco Palomino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  a { color: inherit; text-decoration: none; }
+  body { background: #0E1117; color: #E8E2D6; font-family: 'Hanken Grotesk', sans-serif; }
+
+  /* NAV */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 52px;
+    height: 60px;
+    background: rgba(14,17,23,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+  }
+  .nav-brand {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #E8E2D6;
+    letter-spacing: -0.01em;
+  }
+  .nav-back {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(232,226,214,0.55);
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: #C9A96E; }
+
+  /* ARTICLE HEADER */
+  .article-header {
+    padding: 120px 52px 64px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .article-cat {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 24px;
+  }
+  .article-header h1 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #E8E2D6;
+    margin-bottom: 24px;
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+    color: rgba(232,226,214,0.45);
+    letter-spacing: 0.04em;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+  .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ARTICLE BODY */
+  .article-body {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 52px 80px;
+  }
+  .article-body p {
+    font-family: Newsreader, serif;
+    font-size: 20px;
+    line-height: 1.78;
+    color: rgba(232,226,214,0.88);
+    margin-bottom: 28px;
+  }
+  .article-body h2 {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 28px;
+    color: #E8E2D6;
+    margin: 52px 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .article-body h3 {
+    font-family: Hanken Grotesk, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin: 36px 0 12px;
+  }
+  .article-body blockquote {
+    border-left: 3px solid #C9A96E;
+    padding: 4px 0 4px 28px;
+    margin: 36px 0;
+  }
+  .article-body blockquote p {
+    font-style: italic;
+    font-size: 22px;
+    color: #E8E2D6;
+    margin-bottom: 0;
+  }
+  .article-body ul {
+    margin: 0 0 28px 0;
+    padding-left: 24px;
+  }
+  .article-body ul li {
+    font-family: Newsreader, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    color: rgba(232,226,214,0.88);
+    margin-bottom: 10px;
+  }
+  .stat-highlight {
+    display: block;
+    font-family: Newsreader, serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: #C9A96E;
+    line-height: 1.1;
+    margin: 40px 0 8px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(232,226,214,0.45);
+    letter-spacing: 0.06em;
+  }
+
+  /* AUTHOR BIO */
+  .author-bio {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 52px 80px;
+    border-top: 1px solid rgba(201,169,110,0.15);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .author-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 20%;
+    flex-shrink: 0;
+    border: 2px solid rgba(201,169,110,0.3);
+  }
+  .author-name {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #E8E2D6;
+    margin-bottom: 4px;
+  }
+  .author-role {
+    font-size: 13px;
+    color: rgba(232,226,214,0.5);
+    margin-bottom: 10px;
+  }
+  .author-linkedin {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    border-bottom: 1px solid rgba(201,169,110,0.35);
+    padding-bottom: 1px;
+  }
+  .author-linkedin:hover { border-color: #C9A96E; }
+
+  /* RELATED */
+  .related {
+    background: #0B0E14;
+    padding: 64px 52px;
+  }
+  .related-inner { max-width: 780px; margin: 0 auto; }
+  .related h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(232,226,214,0.4);
+    margin-bottom: 32px;
+  }
+  .related-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    transition: opacity 0.2s;
+  }
+  .related-card:hover { opacity: 0.75; }
+  .related-cat {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    white-space: nowrap;
+    margin-top: 4px;
+    min-width: 120px;
+  }
+  .related-title {
+    font-family: Newsreader, serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #E8E2D6;
+    line-height: 1.3;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: #080A0F;
+    color: rgba(232,226,214,0.3);
+    padding: 28px 52px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 768px) {
+    .site-nav { padding: 0 20px; }
+    .article-header { padding: 100px 24px 48px; }
+    .article-header h1 { font-size: 36px; }
+    .article-body { padding: 40px 24px 60px; }
+    .article-body p, .article-body ul li { font-size: 18px; }
+    .article-body h2 { font-size: 24px; }
+    .author-bio { padding: 40px 24px 60px; flex-direction: column; }
+    .related { padding: 48px 24px; }
+    .related-card { flex-direction: column; gap: 8px; }
+    .site-footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">Geanfranco Palomino</a>
+  <a href="index.html#writing" class="nav-back">← Writing</a>
+</nav>
+
+<header class="article-header">
+  <span class="article-cat">IA Aplicada</span>
+  <h1>Shadow AI: ¿enemigo o aliado del líder de datos?</h1>
+  <div class="article-meta">
+    <span>Geanfranco Palomino</span>
+    <span>·</span>
+    <span>7 may 2026</span>
+    <span>·</span>
+    <span>Publicado en LinkedIn</span>
+  </div>
+</header>
+
+<article class="article-body">
+
+  <p>El Shadow AI ya llegó a tu organización. La pregunta no es si existe, sino qué vas a hacer con él.</p>
+
+  <p>Llamamos Shadow AI al uso de herramientas de inteligencia artificial por parte de empleados sin el conocimiento, aprobación o control formal de los departamentos de datos o tecnología. Es el heredero directo del Shadow IT de los años 2010, con una diferencia clave: la velocidad de adopción es radicalmente mayor.</p>
+
+  <blockquote><p>Solo el 40% de las empresas tienen suscripciones oficiales a LLMs. Pero empleados de más del 90% de esas mismas compañías reportan uso personal regular de IA para tareas laborales.</p></blockquote>
+
+  <p>Mientras los programas oficiales siguen atascados en fases piloto, muchos equipos ya usan modelos de lenguaje a diario. La brecha entre la velocidad del negocio y la velocidad de los procesos de aprobación corporativos nunca ha sido tan evidente.</p>
+
+  <h2>Dos respuestas equivocadas</h2>
+
+  <h3>El CDO Policía</h3>
+  <p>Bloquea todo y exige aprobación previa para cualquier herramienta de IA. El resultado es predecible: el Shadow AI no desaparece, simplemente se vuelve más invisible. Los empleados buscan alternativas personales, usan cuentas privadas y evitan mencionar sus herramientas en reuniones. Has creado exactamente el escenario que querías evitar: uso descontrolado, sin trazabilidad y fuera del firewall corporativo.</p>
+
+  <h3>El CDO Puertas Abiertas</h3>
+  <p>Elimina cualquier barrera asumiendo que la innovación no puede contenerse. El problema es que sin estructura, el riesgo se materializa: datos sensibles expuestos en modelos externos, decisiones de negocio basadas en outputs no validados, y una superficie de ataque que crece sin control.</p>
+
+  <p>Ambos extremos fallan por la misma razón: ignoran que la demanda es legítima y que la solución está en el diseño, no en la prohibición ni en la permisividad ciega.</p>
+
+  <h2>La solución: gobernanza pragmática en tres capas</h2>
+
+  <h3>Capa 1 — Zona libre con visibilidad</h3>
+  <p>Herramientas de productividad personal (resúmenes, borradores, traducciones) sin aprobación previa, pero con seguimiento pasivo de uso y formación básica en riesgos. El objetivo no es controlar, sino tener visibilidad.</p>
+
+  <h3>Capa 2 — Zona habilitada con condiciones</h3>
+  <p>Acceso a datos de negocio u operativos mediante solicitud con validación y revisión periódica de outputs. Aquí entran los casos de uso que generan valor real pero requieren cierto nivel de supervisión.</p>
+
+  <h3>Capa 3 — Zona de acceso restringido</h3>
+  <p>Datos de clientes, información regulada y sistemas críticos. Aprobación formal y documentación completa. No hay atajos aquí, y no debería haberlos.</p>
+
+  <h2>El caso BBVA: ejecución sobre perfección</h2>
+
+  <p>BBVA desplegó ChatGPT Enterprise para 125.000 empleados en dos meses en lugar de estudiar el problema indefinidamente. Los resultados hablan por sí solos:</p>
+
+  <ul>
+    <li>Crecimiento de usuarios de 3.000 a 11.000 en un año</li>
+    <li>83% de usuarios activos semanales</li>
+    <li>Ahorro de 2 a 5 horas por persona a la semana</li>
+    <li>Reducción del 74% en tiempo de soporte en operaciones en Perú</li>
+  </ul>
+
+  <span class="stat-highlight">74%</span>
+  <span class="stat-label">reducción en tiempo de soporte · BBVA Perú</span>
+
+  <p style="margin-top: 32px;">No esperaron a tener el marco de gobernanza perfecto. Diseñaron uno suficientemente bueno, lo ejecutaron y lo fueron refinando con datos reales. Eso es liderazgo de datos en la práctica.</p>
+
+  <h2>La conclusión que incomoda</h2>
+
+  <p>El Shadow AI no es una amenaza. Es un síntoma que indica que hay demanda y potencial de productividad dentro de tu organización que los equipos de datos no están satisfaciendo con suficiente velocidad.</p>
+
+  <blockquote><p>El Shadow AI no desaparecerá con la prohibición. Crece porque los equipos de datos no pueden satisfacer las necesidades organizacionales con suficiente rapidez. La respuesta está en diseñar una gobernanza más atractiva que el caos.</p></blockquote>
+
+  <p>Más atractiva que el caos, más rápida que las alternativas no controladas, y suficientemente robusta para proteger cuando las cosas fallen. Ese es el trabajo del líder de datos hoy.</p>
+
+</article>
+
+<div class="author-bio">
+  <img src="foto-perfil.png" alt="Geanfranco Palomino" class="author-photo">
+  <div>
+    <div class="author-name">Geanfranco Palomino</div>
+    <div class="author-role">Ejecutivo en Data &amp; Analytics · ESADE · CDO Spain &amp; Latam</div>
+    <a href="https://www.linkedin.com/in/geanfrancopalomino/" target="_blank" rel="noopener" class="author-linkedin">Conectar en LinkedIn →</a>
+  </div>
+</div>
+
+<section class="related">
+  <div class="related-inner">
+    <h2>También te puede interesar</h2>
+    <a href="power-bi-fabric.html" class="related-card">
+      <span class="related-cat">Estrategia de Datos</span>
+      <span class="related-title">¿Qué pasará con Power BI Pro y Premium con la llegada de Fabric? Te cuento todo lo que debes saber</span>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 Geanfranco Palomino. Todos los derechos reservados.</span>
+  <span>Lima, Perú · Madrid, España</span>
+</footer>
+
+</body>
+</html>
