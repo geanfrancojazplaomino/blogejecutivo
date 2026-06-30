@@ -257,41 +257,105 @@
     padding: 7px 16px;
   }
 
+  /* ── IMPACTO ── */
+  .impact-strip {
+    background: #080A0F;
+    border-top: 1px solid rgba(74,158,191,0.12);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .impact-cell {
+    padding: 48px 40px;
+    border-right: 1px solid rgba(74,158,191,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .impact-cell:last-child { border-right: none; }
+  .impact-num {
+    font-family: Newsreader, serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: #4A9EBF;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .impact-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(232,226,214,0.4);
+    line-height: 1.4;
+  }
+
   /* ── TRAYECTORIA ── */
   #trayectoria { background: #0B0E14; }
-  .trayectoria-list { display: flex; flex-direction: column; }
-  .tray-item {
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 48px;
-    padding: 36px 0;
-    border-top: 1px solid rgba(74,158,191,0.12);
-    align-items: start;
+    grid-template-columns: 120px 1px 1fr;
+    gap: 0 32px;
+    position: relative;
   }
-  .tray-item:last-child { border-bottom: 1px solid rgba(74,158,191,0.12); }
-  .tray-period {
-    font-size: 12px;
+  .tl-year-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 4px;
+    padding-bottom: 48px;
+  }
+  .tl-period {
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(232,226,214,0.4);
-    padding-top: 4px;
+    color: #4A9EBF;
+    text-align: right;
+    line-height: 1.4;
   }
-  .tray-role {
+  .tl-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4A9EBF;
+    flex-shrink: 0;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-line {
+    width: 1px;
+    flex: 1;
+    background: rgba(74,158,191,0.2);
+    margin-top: 4px;
+  }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-content {
+    padding-bottom: 48px;
+  }
+  .tl-role {
     font-family: Newsreader, serif;
     font-weight: 600;
     font-size: 22px;
     color: #E8E2D6;
     margin-bottom: 4px;
+    line-height: 1.2;
   }
-  .tray-company {
-    font-size: 14px;
-    font-weight: 600;
+  .tl-company {
+    font-size: 13px;
+    font-weight: 700;
     color: #4A9EBF;
-    margin-bottom: 10px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
   }
-  .tray-desc {
+  .tl-desc {
     font-size: 15px;
     line-height: 1.65;
     color: rgba(232,226,214,0.55);
@@ -496,7 +560,13 @@
     .section-title { font-size: 36px; margin-bottom: 32px; }
 
     #sobre-mi .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
-    .tray-item { grid-template-columns: 1fr; gap: 8px; }
+    .impact-strip { grid-template-columns: repeat(2, 1fr); }
+    .impact-cell { padding: 32px 24px; border-bottom: 1px solid rgba(74,158,191,0.1); }
+    .impact-cell:nth-child(even) { border-right: none; }
+    .impact-num { font-size: 42px; }
+    .tl-item { grid-template-columns: 80px 1px 1fr; gap: 0 20px; }
+    .tl-year-col { padding-bottom: 32px; }
+    .tl-content { padding-bottom: 32px; }
     .speaker-grid { grid-template-columns: 1fr; }
     .writing-grid { grid-template-columns: 1fr; }
     #contacto { grid-template-columns: 1fr; gap: 48px; }
@@ -550,6 +620,26 @@
   </div>
 </section>
 
+<!-- IMPACTO -->
+<div class="impact-strip">
+  <div class="impact-cell">
+    <span class="impact-num">9</span>
+    <span class="impact-label">Países liderados</span>
+  </div>
+  <div class="impact-cell">
+    <span class="impact-num">+100</span>
+    <span class="impact-label">Stakeholders impactados</span>
+  </div>
+  <div class="impact-cell">
+    <span class="impact-num">50%</span>
+    <span class="impact-label">Mejora en productividad</span>
+  </div>
+  <div class="impact-cell">
+    <span class="impact-num">9+</span>
+    <span class="impact-label">Años de experiencia</span>
+  </div>
+</div>
+
 <!-- SOBRE MÍ -->
 <section id="sobre-mi" class="section">
   <p class="section-tag">Sobre mí</p>
@@ -589,37 +679,49 @@
 <section id="trayectoria" class="section">
   <p class="section-tag">Trayectoria</p>
   <h2 class="section-title">Experiencia que<br><em>genera impacto</em></h2>
-  <div class="trayectoria-list">
-    <div class="tray-item">
-      <span class="tray-period">Ene 2021 — Mar 2026</span>
-      <div>
-        <div class="tray-role">Corporate Head Data Science &amp; Analytics</div>
-        <div class="tray-company">Yanbal International · Industria de Belleza &amp; Venta Directa · Lima, Perú</div>
-        <p class="tray-desc">Diseñé y lideré la estrategia de Datos &amp; AI para 9 países (incluyendo España e Italia), posicionando el dato como activo estratégico. Escalé el equipo de 2 a 10 profesionales, implementé soluciones adoptadas por +100 stakeholders mejorando la productividad en 50%, y colaboré directamente con Bain &amp; Company para transformar el modelo operativo corporativo.</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year-col">
+        <span class="tl-period">Ene 2021<br>Mar 2026</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Corporate Head Data Science &amp; Analytics</div>
+        <div class="tl-company">Yanbal International · Lima, Perú</div>
+        <p class="tl-desc">Diseñé y lideré la estrategia de Datos &amp; AI para 9 países (incluyendo España e Italia), posicionando el dato como activo estratégico. Escalé el equipo de 2 a 10 profesionales, implementé soluciones adoptadas por +100 stakeholders mejorando la productividad en 50%, y colaboré directamente con Bain &amp; Company para transformar el modelo operativo corporativo.</p>
       </div>
     </div>
-    <div class="tray-item">
-      <span class="tray-period">May 2019 — Dic 2020</span>
-      <div>
-        <div class="tray-role">Senior Data Scientist</div>
-        <div class="tray-company">SURA Perú · Administración de Fondos de Pensiones · Lima, Perú</div>
-        <p class="tray-desc">Diseñé el roadmap analítico alineando Data &amp; Analytics con objetivos estratégicos. Desarrollé +5 modelos predictivos logrando una reducción del churn en 12%, y lideré +10 proyectos de analítica presentando resultados e influyendo en decisiones de alta dirección.</p>
+    <div class="tl-item">
+      <div class="tl-year-col">
+        <span class="tl-period">May 2019<br>Dic 2020</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Senior Data Scientist</div>
+        <div class="tl-company">SURA Perú · Lima, Perú</div>
+        <p class="tl-desc">Diseñé el roadmap analítico alineando Data &amp; Analytics con objetivos estratégicos. Desarrollé +5 modelos predictivos logrando una reducción del churn en 12%, y lideré +10 proyectos de analítica influyendo en decisiones de alta dirección.</p>
       </div>
     </div>
-    <div class="tray-item">
-      <span class="tray-period">Ago 2018 — May 2019</span>
-      <div>
-        <div class="tray-role">Especialista Senior en Inteligencia de Riesgos</div>
-        <div class="tray-company">BBVA · Banca Comercial · Lima, Perú</div>
-        <p class="tray-desc">Lideré proyectos de analítica de riesgo sobre una cartera de +9 millones de clientes. Desarrollé modelos predictivos que mejoraron la eficiencia de aprobación crediticia en 5%.</p>
+    <div class="tl-item">
+      <div class="tl-year-col">
+        <span class="tl-period">Ago 2018<br>May 2019</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Especialista Senior en Inteligencia de Riesgos</div>
+        <div class="tl-company">BBVA · Lima, Perú</div>
+        <p class="tl-desc">Lideré proyectos de analítica de riesgo sobre una cartera de +9 millones de clientes. Desarrollé modelos predictivos que mejoraron la eficiencia de aprobación crediticia en 5%.</p>
       </div>
     </div>
-    <div class="tray-item">
-      <span class="tray-period">Ene 2017 — Ago 2018</span>
-      <div>
-        <div class="tray-role">Analista — Análisis Estratégico &amp; CRM</div>
-        <div class="tray-company">Banco de Crédito del Perú (BCP) · Banca Comercial · Lima, Perú</div>
-        <p class="tray-desc">Lideré la gobernanza de datos de contacto de clientes, incrementando la cobertura en 30% y la precisión en 40% para iniciativas de CRM.</p>
+    <div class="tl-item">
+      <div class="tl-year-col">
+        <span class="tl-period">Ene 2017<br>Ago 2018</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-content">
+        <div class="tl-role">Analista — Análisis Estratégico &amp; CRM</div>
+        <div class="tl-company">Banco de Crédito del Perú (BCP) · Lima, Perú</div>
+        <p class="tl-desc">Lideré la gobernanza de datos de contacto de clientes, incrementando la cobertura en 30% y la precisión en 40% para iniciativas de CRM.</p>
       </div>
     </div>
   </div>
